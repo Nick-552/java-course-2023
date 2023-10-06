@@ -8,13 +8,16 @@ public final class PalindromicNumber {
     private static final int TEN = 10;
 
     public static boolean isPalindromeDescendant(int number) {
-        if (number < 0) number = abs(number);
-        if (number / TEN == 0) {
+        int tmp = number;
+        if (number < 0) {
+            tmp = abs(number);
+        }
+        if (tmp / TEN == 0) {
             return false;
-        } else if (isPalindrome(number)) {
+        } else if (isPalindrome(tmp)) {
             return true;
         }
-        return isPalindromeDescendant(makeNew(number));
+        return isPalindromeDescendant(makeNew(tmp));
     }
 
     public static int makeNew(int number) {
