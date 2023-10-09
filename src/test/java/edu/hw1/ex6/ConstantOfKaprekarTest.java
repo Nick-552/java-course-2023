@@ -35,7 +35,6 @@ class ConstantOfKaprekarTest {
         assertEquals(-1, ConstantOfKaprekar.countKaprekar(input));
     }
 
-
     @ParameterizedTest
     @CsvSource(value = {
         "3524, 3087",

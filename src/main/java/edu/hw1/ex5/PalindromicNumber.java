@@ -5,14 +5,14 @@ import static java.lang.Math.abs;
 public final class PalindromicNumber {
     private PalindromicNumber() {}
 
-    private static final int TEN = 10;
+    private static final int BASIS_OF_SYSTEM = 10;
 
     public static boolean isPalindromeDescendant(int number) {
         int tmp = number;
         if (number < 0) {
             tmp = abs(number);
         }
-        if (tmp / TEN == 0) {
+        if (tmp / BASIS_OF_SYSTEM == 0) {
             return false;
         } else if (isPalindrome(tmp)) {
             return true;
@@ -20,26 +20,26 @@ public final class PalindromicNumber {
         return isPalindromeDescendant(makeNew(tmp));
     }
 
-    public static int makeNew(int number) {
+    static int makeNew(int number) {
         int tmp = number;
         int newNumber = 0;
         int multiplier = 1;
         while (tmp > 0) {
-            int d1 = tmp % TEN;
-            tmp /= TEN;
-            int d2 = tmp % TEN;
-            tmp /= TEN;
+            int d1 = tmp % BASIS_OF_SYSTEM;
+            tmp /= BASIS_OF_SYSTEM;
+            int d2 = tmp % BASIS_OF_SYSTEM;
+            tmp /= BASIS_OF_SYSTEM;
             newNumber += (d1 + d2) * multiplier;
-            if (d1 + d2 < TEN) {
-                multiplier *= TEN;
+            if (d1 + d2 < BASIS_OF_SYSTEM) {
+                multiplier *= BASIS_OF_SYSTEM;
             } else {
-                multiplier *= TEN * TEN;
+                multiplier *= BASIS_OF_SYSTEM * BASIS_OF_SYSTEM;
             }
         }
         return newNumber;
     }
 
-    public static boolean isPalindrome(int number) {
+    static boolean isPalindrome(int number) {
         StringBuilder stringBuilder = new StringBuilder(Integer.toString(number));
         StringBuilder stringBuilderReversed = new StringBuilder(stringBuilder).reverse();
         return stringBuilder.compareTo(stringBuilderReversed) == 0;

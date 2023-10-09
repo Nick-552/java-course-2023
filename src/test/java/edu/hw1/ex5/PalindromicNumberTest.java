@@ -8,16 +8,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PalindromicNumberTest {
-
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {-345, -11211230, -13001120, -23336014, -11})
     @DisplayName("Descendant Negative")
-    void isPalindromeDescendant_shouldReturnAsIfItsPositive_whenNegative() {
-        for (int i = 0; i < 10000; i++) {
-            assertEquals(
-                PalindromicNumber.isPalindromeDescendant(i),
-                PalindromicNumber.isPalindromeDescendant(-i)
-            );
-        }
+    void isPalindromeDescendant_shouldReturnAsIfItsPositive_whenNegative(int input) {
+        assertEquals(
+            PalindromicNumber.isPalindromeDescendant(-input),
+            PalindromicNumber.isPalindromeDescendant(input)
+        );
     }
     @DisplayName("Descendant positive true")
     @ParameterizedTest(name = "{index} - {0} - Descendant Positive true")

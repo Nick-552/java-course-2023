@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BrokenStringCorrectorTest {
-
     @Test
     @DisplayName("EvenNumberOfChars")
     void fixString_whenEvenNumberOfChars() {

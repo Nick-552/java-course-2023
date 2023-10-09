@@ -2,28 +2,28 @@ package edu.hw1.ex6;
 
 public final class ConstantOfKaprekar {
     public static final int CONSTANT_OF_KAPREKAR = 6174;
-    private static final int THOUSAND = 1000;
-    private static final int TEN = 10;
+    private static final int MIN_NUMBER = 1000;
+    private static final int BASIS_OF_SYSTEM = 10;
 
     private ConstantOfKaprekar() {
     }
 
     public static int countKaprekar(int number) {
-        if (number <= THOUSAND || number >= THOUSAND * TEN || makeNext(number) == 0) {
+        if (number <= MIN_NUMBER || number >= MIN_NUMBER * BASIS_OF_SYSTEM || makeNext(number) == 0) {
             return -1;
         } else {
-            return countK(number);
+            return countKaprekarRecursion(number);
         }
     }
 
-    private static int countK(int number) {
+    static int countKaprekarRecursion(int number) {
         if (number == CONSTANT_OF_KAPREKAR) {
             return 0;
         }
-        return 1 + countK(makeNext(number));
+        return 1 + countKaprekarRecursion(makeNext(number));
     }
 
-    protected static int makeNext(int number) {
+    static int makeNext(int number) {
         StringBuilder sortedNum = new StringBuilder(
             String.valueOf(number)
                 .chars().sorted()
@@ -35,10 +35,11 @@ public final class ConstantOfKaprekar {
         );
         int minN = Integer.parseInt(sortedNum.toString());
         int maxN = Integer.parseInt(sortedNum.reverse().toString());
-        if (maxN - minN >= THOUSAND) {
-            return maxN - minN;
+        int newN = maxN - minN;
+        if (newN >= MIN_NUMBER) {
+            return newN;
         } else {
-            return TEN * (maxN - minN);
+            return BASIS_OF_SYSTEM * (newN);
         }
     }
 }

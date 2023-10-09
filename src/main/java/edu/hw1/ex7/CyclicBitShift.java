@@ -1,8 +1,6 @@
 package edu.hw1.ex7;
 
 public final class CyclicBitShift {
-    //private static final int BITS_IN_INT = 16;
-
     private CyclicBitShift() {}
 
     public static int rotateLeft(int n, int shift) {

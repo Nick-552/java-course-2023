@@ -9,8 +9,9 @@ public final class TimeToSecondsConverter {
         if (!time.matches("^\\d+:\\d+$")) { //checks if format is wrong
             return -1;
         }
-        int minutes = Integer.parseInt(time.split(":")[0]);
-        int seconds = Integer.parseInt(time.split(":")[1]);
+        String[] minutesAndSeconds = time.split(":");
+        int minutes = Integer.parseInt(minutesAndSeconds[0]);
+        int seconds = Integer.parseInt(minutesAndSeconds[1]);
         if (seconds >= MAX_SECONDS) {
             return -1;
         } else {
