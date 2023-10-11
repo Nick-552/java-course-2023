@@ -33,21 +33,17 @@ public interface Expr {
     }
 
     record Exponent(Expr expr, int exp) implements Expr {
-        public Exponent(Expr expr, int exp) {
+        public Exponent {
             if (expr.evaluate() == 0 && exp < 0) {
                 throw new ArithmeticException("Деление на 0");
             }
-            this.expr = expr;
-            this.exp = exp;
         }
 
         @Override
         public double evaluate() {
             double value = expr.evaluate();
-            if (value == 1) {
-                return 1;
-            } else if (value == -1) {
-                return exp % 2;
+            if (value == 1 || value == 0 && exp != 0) {
+                return value;
             }
             int tmp = exp;
             double exponent = 1;

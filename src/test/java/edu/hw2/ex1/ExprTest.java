@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExprTest {
-
     @Test
     @DisplayName("Tinkoff")
     void expr_shouldWorkCorrectly_whenBasicOperations() {
@@ -28,9 +27,14 @@ class ExprTest {
         "5, 0, 1",
         "0, 0, 1",
         "0, 150, 0",
-        "0.25, -2, 16"
+        "0.25, -2, 16",
+        "1, 100, 1",
+        "-1, 100, 1",
+        "-1, 99, -1",
+        "-1, -99, -1",
+        "-1, -100, 1"
     })
-    @DisplayName("evaluate exponent")
+    @DisplayName("Evaluate Exponent")
     void evaluateExponent_shouldWorkCorrectly_whenBasicTests(double exprConstant, int exponent, double expected) {
         var exp = new Expr.Exponent(new Expr.Constant(exprConstant), exponent);
         assertEquals(expected, exp.evaluate());
@@ -39,8 +43,6 @@ class ExprTest {
     @Test
     @DisplayName("Wrong Exponent Expr")
     void Exponent_shouldThrowArithmeticException_whenExprIsZeroAndExpLowerThenZero() {
-        assertThrows(ArithmeticException.class, () -> {
-            new Expr.Exponent(new Expr.Constant(0), -5);
-        });
+        assertThrows(ArithmeticException.class, () -> new Expr.Exponent(new Expr.Constant(0), -5));
     }
 }
