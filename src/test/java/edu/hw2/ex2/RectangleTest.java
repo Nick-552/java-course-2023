@@ -16,8 +16,9 @@ class RectangleTest {
     @ParameterizedTest
     @MethodSource("rectangles")
     void rectangleArea(Rectangle rect) {
-        rect.setWidth(20);
-        rect.setHeight(10);
+        rect = rect.setWidth(20);
+        rect = rect.setHeight(10);
         assertThat(rect.area()).isEqualTo(200.0);
+        assertThat(rect.getClass()).isEqualTo(Rectangle.class);
     }
 }

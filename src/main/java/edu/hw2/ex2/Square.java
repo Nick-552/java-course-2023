@@ -1,8 +1,15 @@
 package edu.hw2.ex2;
 
 public class Square extends Rectangle {
-    public void setSide(int side) {
-        setHeight(side);
-        setWidth(side);
+
+    public Square(int side) {
+        super(side, side);
+    }
+
+    public Square() {
+    }
+
+    public Square setSide(int side) {
+        return new Square(side);
     }
 }

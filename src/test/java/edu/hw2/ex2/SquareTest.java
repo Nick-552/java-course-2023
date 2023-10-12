@@ -9,7 +9,7 @@ class SquareTest {
     @Test
     void setSide() {
         Square square = new Square();
-        square.setSide(12);
+        square = square.setSide(12);
         assertEquals(144.0, square.area());
     }
 }

@@ -4,12 +4,24 @@ public class Rectangle {
     private int width;
     private int height;
 
-    public final void setWidth(int width) {
+    public Rectangle(int width, int height) {
         this.width = width;
+        this.height = height;
     }
 
-    public final void setHeight(int height) {
-        this.height = height;
+    public Rectangle() {
+
+    }
+
+    public final Rectangle setWidth(int width) {
+        // this.width = width;
+        return new Rectangle(width, this.height);
+    }
+
+
+    public final Rectangle setHeight(int height) {
+        // this.height = height;
+        return new Rectangle(this.width, height);
     }
 
     public final double area() {
