@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PopularCommandExecutorTest {
     // SEEDS
-    private static final long FIRST_IS_ZERO_SEED = 0;
+    static final long FIRST_IS_ZERO_SEED = 0;
     // new Random(0).nextInt(0, 10) generates 0
-    private static final long FIRST_IS_NOT_ZERO_SEED = 1;
+    static final long FIRST_IS_NOT_ZERO_SEED = 1;
     // new Random(1).nextInt(0, 10) generates not 0
-    private static final long FIRST_THREE_ARE_LOWER_THEN_FOUR_SEED = 4;
+    static final long FIRST_THREE_ARE_LOWER_THEN_FOUR_SEED = 4;
     // new Random(4).nextInt(0, 10) generates {2, 2, 3, ...}
-    private static final long FIRST_THREE_ARE_NOT_LOWER_THEN_ZERO_SEED = 2;
+    static final long FIRST_THREE_ARE_NOT_LOWER_THEN_ZERO_SEED = 2;
     // new Random(2).nextInt(0, 10) generates {8, 2, 0, ...}
 
 
