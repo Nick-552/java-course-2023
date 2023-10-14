@@ -6,8 +6,7 @@ public class Square extends Rectangle {
         super(side, side);
     }
 
-    public Square() {
-    }
+    public Square() {}
 
     public Square setSide(int side) {
         return new Square(side);
