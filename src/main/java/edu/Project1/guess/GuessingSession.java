@@ -21,6 +21,7 @@ public class GuessingSession {
     }
 
     public void run() {
+        statePrinter.printAlphabet(guessingWord);
         String guessingString = reader.getLetter();
         GuessResult guessResult = guessResult(guessingString);
         statePrinter.printGuessingResult(guessResult);
@@ -30,7 +31,7 @@ public class GuessingSession {
         if (guessingString.equals("giveUp")) {
             gameState.stop();
             return new GuessResult.Defeat(guessingWord, gameState);
-        } else if (guessingString.length() != 1 || !guessingWord.alphabetContains(guessingString.charAt(0))) {
+        } else if (guessingString.length() != 1 || !guessingWord.alphabetContains(guessingString)) {
             return new GuessResult.InvalidGuess(guessingWord, gameState);
         } else {
             return guessChar(guessingString.charAt(0));

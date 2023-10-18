@@ -13,10 +13,10 @@ public class DefaultDictionary implements Dictionary {
         "checkstyle", "word", "weather",
         "hangman", "project", "denissin"
     };
-    public static final Character[] ALPHABET = {
-        'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
-        'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
-        'z', 'x', 'c', 'v', 'b', 'n', 'm',
+    public static final String[] ALPHABET = {
+        "a", "b", "c", "d", "e", "f", "g", "h", "i",
+        "j", "k", "l", "m", "n", "o", "p", "q", "r",
+        "s", "t", "u", "v", "w", "x", "y", "z"
     };
     private final String[] words;
 
@@ -35,7 +35,7 @@ public class DefaultDictionary implements Dictionary {
             throw new RuntimeException("Incorrect word length");
         }
         for (char c: randomWord.toCharArray()) {
-            if (!Contains.contains(c, ALPHABET)) {
+            if (!Contains.contains(String.valueOf(c), ALPHABET)) {
                 LogManager.getLogger().warn("Word doesnt match alphabet, word was selected from default set of words");
                 randomWord = DEFAULT_WORDS[new Random().nextInt(DEFAULT_WORDS.length)];
                 break;
@@ -45,7 +45,7 @@ public class DefaultDictionary implements Dictionary {
     }
 
     @Override
-    public Character[] getAlphabet() {
+    public String[] getAlphabet() {
         return ALPHABET;
     }
 }

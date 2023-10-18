@@ -1,41 +1,44 @@
 package edu.Project1.guess;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import static edu.Project1.utils.Contains.contains;
 
 public class GuessingWord {
     private static final char HIDDEN_LETTER = '*';
+    private static final String STRIKED = "\u0336";
     private final String actualWord;
-    private final char[] userWord;
+    private final Character[] userWord;
 
-    private final Character[] alphabet;
+    private final String[] alphabet;
 
-    private final ArrayList<Character> alreadyTried;
-
-    public GuessingWord(String actualWord, Character[] alphabet) {
+    public GuessingWord(String actualWord, String[] alphabet) {
         this.actualWord = actualWord;
-        this.userWord = new char[actualWord.length()];
+        this.userWord = new Character[actualWord.length()];
         this.alphabet = alphabet;
-        this.alreadyTried = new ArrayList<>(alphabet.length);
         Arrays.fill(userWord, HIDDEN_LETTER);
-
     }
 
-    public char[] getUserWord() {
-        return userWord;
+    public String getUserWord() {
+        return String.valueOf(
+            Arrays.stream(userWord)
+            .collect(
+                StringBuilder::new,
+                StringBuilder::appendCodePoint,
+                StringBuilder::append
+            )
+        );
     }
 
-    public Character[] getAlphabet() {
+    public String[] getAlphabet() {
         return alphabet;
     }
 
-    public boolean alphabetContains(char c) {
-        return contains(c, alphabet);
+    public boolean alphabetContains(String s) {
+        return contains(s, alphabet) || contains(s.concat(STRIKED), alphabet);
     }
 
     public boolean isAlreadyTried(char c) {
-        return contains(c, alreadyTried.toArray());
+        return contains(String.valueOf(c).concat(STRIKED), alphabet);
     }
 
     public boolean isGuessed() {
@@ -43,19 +46,15 @@ public class GuessingWord {
     }
 
     public boolean actualWordContains(Character guessingChar) {
-        Character[] charArray = new Character[actualWord.length()];
-        for (int i = 0; i < actualWord.length(); i++) {
-            charArray[i] = actualWord.charAt(i);
-        }
+        Character[] charArray = actualWord
+            .chars()
+            .mapToObj(c -> (Character) (char) c)
+            .toArray(Character[]::new);
         return contains(guessingChar, charArray);
     }
 
     public boolean userWordContains(Character guessingChar) {
-        Character[] charArray = new Character[userWord.length];
-        for (int i = 0; i < userWord.length; i++) {
-            charArray[i] = userWord[i];
-        }
-        return contains(guessingChar, charArray);
+        return contains(guessingChar, userWord);
     }
 
     public void open(Character guessingChar) {
@@ -64,9 +63,18 @@ public class GuessingWord {
                 userWord[i] = guessingChar;
             }
         }
+        for (int i = 0; i < alphabet.length; i++) {
+            if (alphabet[i].equals(String.valueOf(guessingChar))) {
+                alphabet[i] = alphabet[i].concat(STRIKED);
+            }
+        }
     }
 
     public void tryChar(Character c) {
-        alreadyTried.add(c);
+        for (int i = 0; i < alphabet.length; i++) {
+            if (alphabet[i].equals(String.valueOf(c))) {
+                alphabet[i] = alphabet[i].concat(STRIKED);
+            }
+        }
     }
 }

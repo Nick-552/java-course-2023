@@ -25,8 +25,8 @@ public class HangmanGame {
         guessingWord = new GuessingWord(dictionary.getRandomWord(), dictionary.getAlphabet());
     }
 
-    HangmanGame(String[] bankOgWords) {
-        Dictionary dictionary = new DefaultDictionary(bankOgWords);
+    HangmanGame(String[] bankOfWords) {
+        Dictionary dictionary = new DefaultDictionary(bankOfWords);
         reader = new CliReader();
         statePrinter = new StateCliPrinter();
         gameState = new GameState();

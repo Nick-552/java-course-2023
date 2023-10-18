@@ -10,4 +10,6 @@ public interface StatePrinter {
     void printStartMessage(GameState gameState, GuessingWord guessingWord);
 
     void printGuessingResult(GuessResult guessResult);
+
+    void printAlphabet(GuessingWord guessingWord);
 }

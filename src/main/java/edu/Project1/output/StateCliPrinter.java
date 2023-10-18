@@ -32,9 +32,13 @@ public class StateCliPrinter implements StatePrinter {
 
     @Override
     public void printGameState(GameState gameState, GuessingWord guessingWord) {
-        System.out.println("Word: " + (Arrays.toString(guessingWord.getUserWord())));
-        System.out.println("Alphabet: " + (Arrays.toString(guessingWord.getAlphabet())));
+        System.out.println("Word: " + guessingWord.getUserWord());
         System.out.println("Remaining attempts: " + (gameState.getMaxAttempts() - gameState.getAttempts()));
         System.out.println();
+    }
+
+    @Override
+    public void printAlphabet(GuessingWord guessingWord) {
+        System.out.println("Alphabet: " + (Arrays.toString(guessingWord.getAlphabet())));
     }
 }

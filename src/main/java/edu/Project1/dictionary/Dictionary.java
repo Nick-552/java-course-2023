@@ -5,5 +5,5 @@ import org.jetbrains.annotations.NotNull;
 public interface Dictionary {
     @NotNull String getRandomWord();
 
-    Character[] getAlphabet();
+    String[] getAlphabet();
 }
