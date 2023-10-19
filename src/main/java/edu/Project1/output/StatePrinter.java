@@ -12,4 +12,6 @@ public interface StatePrinter {
     void printGuessingResult(GuessResult guessResult);
 
     void printAlphabet(GuessingWord guessingWord);
+
+    void print(String output);
 }

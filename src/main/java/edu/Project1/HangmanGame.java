@@ -16,21 +16,22 @@ public class HangmanGame {
     private final GameState gameState;
     private final Reader reader;
     private final StatePrinter statePrinter;
+    private final Dictionary dictionary;
 
     HangmanGame() {
-        Dictionary dictionary = new DefaultDictionary();
         reader = new CliReader();
         statePrinter = new StateCliPrinter();
+        dictionary = new DefaultDictionary();
         gameState = new GameState();
-        guessingWord = new GuessingWord(dictionary.getRandomWord(), dictionary.getAlphabet());
+        guessingWord = new GuessingWord(dictionary);
     }
 
-    HangmanGame(String[] bankOfWords) {
-        Dictionary dictionary = new DefaultDictionary(bankOfWords);
-        reader = new CliReader();
-        statePrinter = new StateCliPrinter();
+    HangmanGame(Reader reader, StatePrinter statePrinter, Dictionary dictionary) {
+        this.reader = reader;
+        this.statePrinter = statePrinter;
+        this.dictionary = dictionary;
         gameState = new GameState();
-        guessingWord = new GuessingWord(dictionary.getRandomWord(), dictionary.getAlphabet());
+        guessingWord = new GuessingWord(dictionary);
     }
 
     public void run() {

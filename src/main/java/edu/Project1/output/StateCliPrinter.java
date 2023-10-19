@@ -9,36 +9,41 @@ import java.util.Arrays;
 public class StateCliPrinter implements StatePrinter {
     @Override
     public void printGuessingResult(GuessResult guessResult) {
-        System.out.println(guessResult.message());
+        print(guessResult.message());
         printGameState(guessResult.gameState(), guessResult.guessingWord());
     }
 
     @Override
     public void printStartMessage(GameState gameState, GuessingWord guessingWord) {
-        System.out.println("Hangman Game");
-        System.out.println();
-        System.out.println("Rules:");
-        System.out.println("In the beginning of the game, a random word is generated");
-        System.out.println("The goal of the game is to guess this word by guessing letters it consists of");
-        System.out.println("On each turn you should guess one letter");
-        System.out.println(
+        print("Hangman Game");
+        print("");
+        print("Rules:");
+        print("In the beginning of the game, a random word is generated");
+        print("The goal of the game is to guess this word by guessing letters it consists of");
+        print("On each turn you should guess one letter");
+        print(
             "If the letter guessed correctly,"
             + " it will be opened in the word and you will NOT lose an attempt"
         );
-        System.out.println("If guessing letter is not in the word, you lose one attempt");
-        System.out.println("You have " + gameState.getMaxAttempts() + " attempts");
+        print("If guessing letter is not in the word, you lose one attempt");
+        print("You have " + gameState.getMaxAttempts() + " attempts");
         printGameState(gameState, guessingWord);
     }
 
     @Override
     public void printGameState(GameState gameState, GuessingWord guessingWord) {
-        System.out.println("Word: " + guessingWord.getUserWord());
-        System.out.println("Remaining attempts: " + (gameState.getMaxAttempts() - gameState.getAttempts()));
-        System.out.println();
+        print("Word: " + guessingWord.getUserWord());
+        print("Remaining attempts: " + (gameState.getMaxAttempts() - gameState.getAttempts()));
+        print("");
     }
 
     @Override
     public void printAlphabet(GuessingWord guessingWord) {
-        System.out.println("Alphabet: " + (Arrays.toString(guessingWord.getAlphabet())));
+        print("Alphabet: " + (Arrays.toString(guessingWord.getAlphabet())));
+    }
+
+    @Override
+    public void print(String output) {
+        System.out.println(output);
     }
 }

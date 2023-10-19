@@ -28,7 +28,7 @@ public class GuessingSession {
     }
 
     @NotNull GuessResult guessResult(String guessingString) {
-        if (guessingString.equals("giveUp")) {
+        if (guessingString == null || guessingString.equals("giveUp")) {
             gameState.stop();
             return new GuessResult.Defeat(guessingWord, gameState);
         } else if (guessingString.length() != 1 || !guessingWord.alphabetContains(guessingString)) {

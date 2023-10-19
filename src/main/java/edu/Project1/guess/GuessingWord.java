@@ -1,5 +1,6 @@
 package edu.Project1.guess;
 
+import edu.Project1.dictionary.Dictionary;
 import java.util.Arrays;
 import static edu.Project1.utils.Contains.contains;
 
@@ -11,10 +12,10 @@ public class GuessingWord {
 
     private final String[] alphabet;
 
-    public GuessingWord(String actualWord, String[] alphabet) {
-        this.actualWord = actualWord;
+    public GuessingWord(Dictionary dictionary) {
+        this.actualWord = dictionary.getRandomWord();
         this.userWord = new Character[actualWord.length()];
-        this.alphabet = alphabet;
+        this.alphabet = dictionary.getAlphabet();
         Arrays.fill(userWord, HIDDEN_LETTER);
     }
 

@@ -1,7 +1,6 @@
 package edu.Project1.input;
 
 import java.util.Scanner;
-import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("checkstyle:RegexpSinglelineJava")
 public class CliReader implements Reader {
@@ -9,7 +8,7 @@ public class CliReader implements Reader {
 
 
     @Override
-    public @NotNull String getLetter() {
+    public String getLetter() {
         System.out.println("Guess a letter:");
         return INPUT.next();
     }

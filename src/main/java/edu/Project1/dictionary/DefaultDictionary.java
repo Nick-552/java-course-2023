@@ -1,6 +1,7 @@
 package edu.Project1.dictionary;
 
 import edu.Project1.utils.Contains;
+import java.util.Arrays;
 import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
@@ -8,12 +9,12 @@ import org.jetbrains.annotations.NotNull;
 public class DefaultDictionary implements Dictionary {
     private static final int MIN_WORD_LENGTH = 4;
     private static final int MAX_WORD_LENGTH = 15;
-    public static final String[] DEFAULT_WORDS = {
+    static final String[] DEFAULT_WORDS = {
         "bank", "java", "programming",
         "checkstyle", "word", "weather",
         "hangman", "project", "denissin"
     };
-    public static final String[] ALPHABET = {
+    static final String[] ALPHABET = {
         "a", "b", "c", "d", "e", "f", "g", "h", "i",
         "j", "k", "l", "m", "n", "o", "p", "q", "r",
         "s", "t", "u", "v", "w", "x", "y", "z"
@@ -46,6 +47,6 @@ public class DefaultDictionary implements Dictionary {
 
     @Override
     public String[] getAlphabet() {
-        return ALPHABET;
+        return Arrays.copyOf(ALPHABET, ALPHABET.length);
     }
 }
