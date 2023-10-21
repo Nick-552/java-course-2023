@@ -1,11 +1,12 @@
 package edu.hw3.ex4;
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
 @SuppressWarnings("checkstyle:MagicNumber")
 public final class DecimalToRomanConverter {
-    private static final Map<Integer, String> ROMAN_VALUES = new TreeMap<>();
+    private static final Map<Integer, String> ROMAN_VALUES = new TreeMap<>(Comparator.reverseOrder());
 
     static {
         ROMAN_VALUES.put(1000, "M");
@@ -32,7 +33,7 @@ public final class DecimalToRomanConverter {
         int tmp = number;
         StringBuilder romanNumber = new StringBuilder();
         for (var entry : ROMAN_VALUES.entrySet()) {
-            while (tmp > entry.getKey()) {
+            while (tmp >= entry.getKey()) {
                 romanNumber.append(entry.getValue());
                 tmp -= entry.getKey();
             }
