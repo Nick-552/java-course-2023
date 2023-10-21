@@ -1,4 +1,4 @@
-package edu.hw2.ex3;
+package edu.hw2.ex3.exception;
 
 public class ConnectionException  extends RuntimeException {
     public ConnectionException(String message) {

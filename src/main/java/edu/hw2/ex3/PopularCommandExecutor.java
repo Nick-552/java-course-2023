@@ -1,28 +1,25 @@
 package edu.hw2.ex3;
 
-import java.util.Random;
+import edu.hw2.ex3.connection.Connection;
+import edu.hw2.ex3.connection_manager.ConnectionManager;
+import edu.hw2.ex3.exception.ConnectionException;
+import java.util.Objects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class PopularCommandExecutor {
+public class PopularCommandExecutor {
     private final ConnectionManager connectionManager;
 
     private final static Logger LOGGER = LogManager.getLogger();
 
     private final int maxAttempts;
 
-    public PopularCommandExecutor(int maxAttempts, long getConnectionRandomSeed, long executionRandomSeed) {
+    public PopularCommandExecutor(int maxAttempts, ConnectionManager connectionManager) {
+        if (maxAttempts <= 0) {
+            throw new IllegalArgumentException("maxAttempts should be greater than 0");
+        }
         this.maxAttempts = maxAttempts;
-        Random getConnectionRandom = new Random(getConnectionRandomSeed);
-        Random executeRandom = new Random(executionRandomSeed);
-        this.connectionManager = new DefaultConnectionManager(getConnectionRandom, executeRandom);
-    }
-
-    public PopularCommandExecutor(int maxAttempts) {
-        this.maxAttempts = maxAttempts;
-        Random getConnectionRandom = new Random();
-        Random executeRandom = new Random();
-        this.connectionManager = new DefaultConnectionManager(getConnectionRandom, executeRandom);
+        this.connectionManager = connectionManager;
     }
 
     public void updatePackages() {
@@ -32,26 +29,27 @@ public final class PopularCommandExecutor {
     private void tryExecute(String command) {
         Connection connection = connectionManager.getConnection();
         ConnectionException connectionExceptionLast = null;
-        int attempts = 0;
-        while (attempts < maxAttempts) {
+        int failedAttempts = 0;
+        while (failedAttempts < maxAttempts) {
             try {
                 connection.execute(command);
                 break;
             } catch (Exception connectionException) {
-                attempts++;
+                failedAttempts++;
                 connectionExceptionLast = (ConnectionException) connectionException;
             }
         }
         try {
             connection.close();
         } catch (Exception e) {
+            LOGGER.info("Failed to close connection");
             throw new ConnectionException(e);
+        } finally {
+            if (failedAttempts == maxAttempts) {
+                LOGGER.info("Execution failed");
+                throw Objects.requireNonNull(connectionExceptionLast);
+            }
         }
-        if (attempts == maxAttempts) {
-            LOGGER.info("Execution failed");
-            throw connectionExceptionLast;
-        } else {
-            LOGGER.info("Executed succesfully");
-        }
+
     }
 }
