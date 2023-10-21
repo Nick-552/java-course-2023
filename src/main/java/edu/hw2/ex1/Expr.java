@@ -32,30 +32,10 @@ public interface Expr {
         }
     }
 
-    record Exponent(Expr expr, int exp) implements Expr {
-        public Exponent {
-            if (expr.evaluate() == 0 && exp < 0) {
-                throw new ArithmeticException("Деление на 0");
-            }
-        }
-
+    record Exponent(Expr expr, double pow) implements Expr {
         @Override
         public double evaluate() {
-            double value = expr.evaluate();
-            if (value == 1 || value == 0 && exp != 0) {
-                return value;
-            }
-            int tmp = exp;
-            double exponent = 1;
-            while (tmp > 0) {
-                exponent *= value;
-                tmp--;
-            }
-            while (tmp < 0) {
-                exponent /= value;
-                tmp++;
-            }
-            return exponent;
+            return Math.pow(expr.evaluate(), pow);
         }
     }
 }

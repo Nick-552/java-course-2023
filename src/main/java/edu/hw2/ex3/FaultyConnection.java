@@ -6,9 +6,12 @@ import org.apache.logging.log4j.Logger;
 
 public class FaultyConnection implements Connection {
     private final static Logger LOGGER = LogManager.getLogger();
-    private final Random random;
+
     private final static int RANDOM_BOUND = 10;
+
     private final static int LOW_SPEED_BOUND = 4;
+
+    private final Random random;
 
     public FaultyConnection(Random random) {
         this.random = random;

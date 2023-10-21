@@ -4,19 +4,20 @@ import java.util.Random;
 
 public class DefaultConnectionManager implements ConnectionManager {
     private static final int RANDOM_BOUND = 10;
+
     private final Random connectionRandom;
-    private final Random executeRandom;
+
+    private final Random executionRandom;
 
     public DefaultConnectionManager(Random connectionRandom, Random executeRandom) {
         this.connectionRandom = connectionRandom;
-        this.executeRandom = executeRandom;
+        this.executionRandom = executeRandom;
     }
 
     @Override
     public Connection getConnection() {
-        int i = connectionRandom.nextInt(0, RANDOM_BOUND);
-        if (i == 0) {
-            return new FaultyConnection(executeRandom);
+        if (connectionRandom.nextInt(0, RANDOM_BOUND) == 0) {
+            return new FaultyConnection(executionRandom);
         } else {
             return new StableConnection();
         }

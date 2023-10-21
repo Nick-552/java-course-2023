@@ -6,24 +6,26 @@ import org.apache.logging.log4j.Logger;
 
 public final class PopularCommandExecutor {
     private final ConnectionManager connectionManager;
+
     private final static Logger LOGGER = LogManager.getLogger();
+
     private final int maxAttempts;
 
-    PopularCommandExecutor(int maxAttempts, long getConnectionRandomSeed, long executeRandomSeed) {
+    public PopularCommandExecutor(int maxAttempts, long getConnectionRandomSeed, long executionRandomSeed) {
         this.maxAttempts = maxAttempts;
         Random getConnectionRandom = new Random(getConnectionRandomSeed);
-        Random executeRandom = new Random(executeRandomSeed);
+        Random executeRandom = new Random(executionRandomSeed);
         this.connectionManager = new DefaultConnectionManager(getConnectionRandom, executeRandom);
     }
 
-    PopularCommandExecutor(int maxAttempts) {
+    public PopularCommandExecutor(int maxAttempts) {
         this.maxAttempts = maxAttempts;
         Random getConnectionRandom = new Random();
         Random executeRandom = new Random();
         this.connectionManager = new DefaultConnectionManager(getConnectionRandom, executeRandom);
     }
 
-    void updatePackages() {
+    public void updatePackages() {
         tryExecute("apt update && apt upgrade -y");
     }
 
@@ -35,9 +37,9 @@ public final class PopularCommandExecutor {
             try {
                 connection.execute(command);
                 break;
-            } catch (ConnectionException connectionException) {
+            } catch (Exception connectionException) {
                 attempts++;
-                connectionExceptionLast = connectionException;
+                connectionExceptionLast = (ConnectionException) connectionException;
             }
         }
         try {
