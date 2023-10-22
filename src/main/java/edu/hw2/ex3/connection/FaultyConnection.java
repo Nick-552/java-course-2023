@@ -12,11 +12,11 @@ public class FaultyConnection implements Connection {
 
     private final static int LOW_SPEED_BOUND = 4;
 
-    private final static Random RANDOM = new Random();
+    private static Random random = new Random();
 
     @Override
     public void execute(String command) {
-        int randomInt = RANDOM.nextInt(0, RANDOM_BOUND);
+        int randomInt = random.nextInt(0, RANDOM_BOUND);
         if (randomInt == 0) {
             throw new ConnectionException("Failed to connect (no connection)");
         } else if (randomInt < LOW_SPEED_BOUND) {

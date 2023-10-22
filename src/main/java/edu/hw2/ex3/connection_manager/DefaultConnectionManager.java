@@ -8,11 +8,11 @@ import java.util.Random;
 public class DefaultConnectionManager implements ConnectionManager {
     private static final int RANDOM_BOUND = 10;
 
-    private static final Random RANDOM = new Random();
+    private static Random random = new Random();
 
     @Override
     public Connection getConnection() {
-        if (RANDOM.nextInt(0, RANDOM_BOUND) == 0) {
+        if (random.nextInt(0, RANDOM_BOUND) == 0) {
             return new FaultyConnection();
         } else {
             return new StableConnection();
