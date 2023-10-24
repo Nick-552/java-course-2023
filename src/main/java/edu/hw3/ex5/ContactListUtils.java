@@ -3,13 +3,9 @@ package edu.hw3.ex5;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 public final class ContactListUtils {
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private static final String NAME_AND_SURNAME_REGEX = "^[A-Z][a-z]*$";
 
@@ -44,7 +40,7 @@ public final class ContactListUtils {
         String name = contactArr[0];
         String surname = contactArr[1];
         if (!name.matches(NAME_AND_SURNAME_REGEX) || !surname.matches(NAME_AND_SURNAME_REGEX)) {
-            LOGGER.warn("Возможно имя или фамилия введены неправильно");
+            throw new IllegalArgumentException("Неверный формат имени или фамилии");
         }
         return new Contact(name, surname);
     }

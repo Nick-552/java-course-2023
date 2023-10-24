@@ -9,6 +9,6 @@ public record Contact(String name, String surname) implements Comparable<Contact
 
     @Override
     public int compareTo(@NotNull Contact contact) {
-        return this.name.toLowerCase().compareTo(contact.name.toLowerCase());
+        return this.surname.toLowerCase().compareTo(contact.surname.toLowerCase());
     }
 }
