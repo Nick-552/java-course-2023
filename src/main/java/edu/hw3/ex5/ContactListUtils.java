@@ -33,6 +33,9 @@ public final class ContactListUtils {
     }
 
     private static Contact parseContact(@NotNull String contactString) {
+        if (contactString == null) {
+            throw new IllegalArgumentException("String is null");
+        }
         String[] contactArr = contactString.split(" ");
         if (contactArr.length != 2) {
             throw new IllegalArgumentException("Неверное количество слов для контакта");

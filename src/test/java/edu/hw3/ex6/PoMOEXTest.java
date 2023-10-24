@@ -15,11 +15,12 @@ public class PoMOEXTest {
 
     @Test
     @DisplayName("Add and mostValuableStock")
-    public void testAddStock() {
+    public void addAndMostValuableStock() {
         Stock stock1 = new Stock("SBER", "Сбер Банк", 270.51);
         Stock stock2 = new Stock("ASTR", "Астра", 501.2);
         Stock stock3 = new Stock("GAZP", "Газпром", 170.15);
         poMOEX.add(stock1);
+        assertThat(poMOEX.mostValuableStock()).isEqualTo(stock1);
         poMOEX.add(stock2);
         poMOEX.add(stock3);
         assertThat(poMOEX.mostValuableStock()).isEqualTo(stock2);

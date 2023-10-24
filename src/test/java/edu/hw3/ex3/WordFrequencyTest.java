@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class WordFrequencyTest {
 
-    private static Stream<Arguments> goodSource() {
+    private static Stream<Arguments> wordSource() {
         return Stream.of(
             Arguments.of(
                 List.of("a", "bb", "a", "bb"),
@@ -42,7 +42,7 @@ class WordFrequencyTest {
 
     @ParameterizedTest
     @DisplayName("Basic test")
-    @MethodSource("goodSource")
+    @MethodSource("wordSource")
     <T> void count_shouldReturnFrequencyMap_whenValidInput(List<T> words, Map<T, Integer> expectedMap) {
         assertThat(WordFrequency.count(words)).isEqualTo(expectedMap);
     }

@@ -100,7 +100,7 @@ class ContactListUtilsTest {
     @ParameterizedTest
     @MethodSource("illegalContactsSource")
     @DisplayName("Can't parse contact")
-    void parseContacts_shouldThrowIllegalArgumentException_whenValidInput(String[] contacts, Order order) {
+    void parseContacts_shouldThrowIllegalArgumentException_whenInvalidInput(String[] contacts, Order order) {
         assertThatIllegalArgumentException().isThrownBy(() -> parseContacts(contacts, order));
     }
 

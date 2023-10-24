@@ -6,7 +6,10 @@ public final class AtbashEncoder {
 
     private AtbashEncoder() {}
 
-    public static @NotNull String encode(@NotNull String message) {
+    public static @NotNull String encode(String message) {
+        if (message == null) {
+            return "";
+        }
         StringBuilder stringBuilder = new StringBuilder(message);
         for (int i = 0; i < stringBuilder.length(); i++) {
             char letter = stringBuilder.charAt(i);

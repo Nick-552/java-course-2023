@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class BracketsClusteringTest {
 
@@ -18,7 +17,8 @@ class BracketsClusteringTest {
             Arguments.of("()()()", new String[] {"()", "()", "()"}),
             Arguments.of("((()))", new String[] {"((()))"}),
             Arguments.of("((()))(())()()(()())", new String[] {"((()))", "(())", "()", "()", "(()())"}),
-            Arguments.of("((())())(()(()()))", new String[] {"((())())", "(()(()()))"})
+            Arguments.of("((())())(()(()()))", new String[] {"((())())", "(()(()()))"}),
+            Arguments.of("", new String[]{})
         );
     }
 
@@ -49,19 +49,19 @@ class BracketsClusteringTest {
     @MethodSource("bracketBadSourceNotBalanced")
     @DisplayName("Not balanced")
     void clusterBrackets_ThrowIllegalArgumentException_whenNotBalanced(String expr) {
-        assertThatThrownBy(() -> BracketsClustering.clusterBrackets(expr)).isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> BracketsClustering.clusterBrackets(expr));
     }
 
     @ParameterizedTest
     @MethodSource("bracketBadSourceWrongSymbols")
     @DisplayName("Wrong symbols")
     void clusterBrackets_shouldThrowIllegalArgumentException_whenWrongSymbols(String expr) {
-        assertThatThrownBy(() -> BracketsClustering.clusterBrackets(expr)).isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> BracketsClustering.clusterBrackets(expr));
     }
 
     @Test
     @DisplayName("null test")
     void clusterBrackets_shouldThrowIllegalArgumentException_whenNull() {
-        assertThrows(IllegalArgumentException.class, () -> BracketsClustering.clusterBrackets(null));
+        assertThatIllegalArgumentException().isThrownBy(() -> BracketsClustering.clusterBrackets(null));
     }
 }

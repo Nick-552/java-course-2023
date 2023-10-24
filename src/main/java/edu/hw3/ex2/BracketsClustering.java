@@ -9,6 +9,9 @@ public final class BracketsClustering {
     private BracketsClustering() {}
 
     public static String[] clusterBrackets(@NotNull String expr) {
+        if (expr == null) {
+            throw new IllegalArgumentException("String is null");
+        }
         if (!hasOnlyRoundBrackets(expr)) {
             throw new IllegalArgumentException("String contains wrong symbols (should contain only round brackets)");
         }
