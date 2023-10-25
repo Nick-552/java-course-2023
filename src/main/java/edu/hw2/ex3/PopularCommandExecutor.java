@@ -27,16 +27,22 @@ public class PopularCommandExecutor {
     }
 
     private void tryExecute(String command) {
-        Connection connection = connectionManager.getConnection();
+        Connection connection = Objects.requireNonNull(connectionManager.getConnection());
         ConnectionException connectionExceptionLast = null;
         int failedAttempts = 0;
         while (failedAttempts < maxAttempts) {
             try {
                 connection.execute(command);
                 break;
-            } catch (Exception connectionException) {
+            } catch (Exception e) {
                 failedAttempts++;
-                connectionExceptionLast = (ConnectionException) connectionException;
+                if (e instanceof ConnectionException) {
+                    connectionExceptionLast = (ConnectionException) e;
+                } else {
+                    connectionExceptionLast = new ConnectionException(
+                        "Unexpected exception has occurred while executing command.", e
+                    );
+                }
             }
         }
         try {

@@ -37,11 +37,6 @@ class PopularCommandExecutorTest {
 
     @BeforeAll
     public void init() throws NoSuchFieldException, IllegalAccessException {
-        /*  otherwise:
-            Java 21 (65) is not supported by the current version of Byte Buddy
-            which officially supports Java 20 (64)
-        */
-        System.setProperty("net.bytebuddy.experimental", "true");
         openMocks(this);
         setStatic(DefaultConnectionManager.class.getDeclaredField("random"), mockedConnectionRandom);
         setStatic(FaultyConnection.class.getDeclaredField("random"), mockedExecutionRandom);
