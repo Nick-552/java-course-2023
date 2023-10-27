@@ -10,7 +10,7 @@ public final class WordFrequency {
     public static <T> Map<T, Integer> count(List<T> words) {
         Map<T, Integer> ret = new HashMap<>();
         if (words == null) {
-            throw new IllegalArgumentException("words must not be null");
+            throw new NullPointerException("words must not be null");
         }
         for (T word : words) {
             ret.putIfAbsent(word, 0);

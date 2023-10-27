@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 class WordFrequencyTest {
 
@@ -47,7 +48,7 @@ class WordFrequencyTest {
 
     @Test
     @DisplayName("null test")
-    void count_shouldThrowIllegalArgumentException_whenNull() {
-        assertThatIllegalArgumentException().isThrownBy(() -> WordFrequency.count(null));
+    void count_shouldThrowNullPointerException_whenNull() {
+        assertThatNullPointerException().isThrownBy(() -> WordFrequency.count(null));
     }
 }
