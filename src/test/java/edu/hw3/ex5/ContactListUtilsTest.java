@@ -94,20 +94,20 @@ class ContactListUtilsTest {
     @MethodSource("contactsSource")
     @DisplayName("Basic test")
     void parseContacts_shouldWorkCorrectly_whenValidInput(String[] contacts, Order order, List<Contact> expected) {
-        assertThat(parseContacts(contacts, order)).isEqualTo(expected);
+        assertThat(parseContacts(order, contacts)).isEqualTo(expected);
     }
 
     @ParameterizedTest
     @MethodSource("illegalContactsSource")
     @DisplayName("Can't parse contact")
     void parseContacts_shouldThrowIllegalArgumentException_whenInvalidInput(String[] contacts, Order order) {
-        assertThatIllegalArgumentException().isThrownBy(() -> parseContacts(contacts, order));
+        assertThatIllegalArgumentException().isThrownBy(() -> parseContacts(order, contacts));
     }
 
     @ParameterizedTest
     @MethodSource("wrongFormatContactsSource")
     @DisplayName("Wrong name and surname format")
     void parseContacts_shouldThrowIllegalArgumentException_whenWrongFormatContacts(String[] contacts, Order order) {
-        assertThatIllegalArgumentException().isThrownBy(() -> parseContacts(contacts, order));
+        assertThatIllegalArgumentException().isThrownBy(() -> parseContacts(order, contacts));
     }
 }

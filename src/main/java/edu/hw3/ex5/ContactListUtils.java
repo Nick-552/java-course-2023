@@ -11,7 +11,7 @@ public final class ContactListUtils {
 
     private ContactListUtils() {}
 
-    public static List<Contact> parseContacts(String[] contacts, Order order) {
+    public static List<Contact> parseContacts(Order order, String... contacts) {
         if (contacts == null) {
             return new ArrayList<>();
         }
