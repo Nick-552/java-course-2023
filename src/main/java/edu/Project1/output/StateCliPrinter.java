@@ -5,7 +5,6 @@ import edu.Project1.guess.GuessResult;
 import edu.Project1.guess.GuessingWord;
 import java.util.Arrays;
 
-@SuppressWarnings("checkstyle:RegexpSinglelineJava")
 public class StateCliPrinter implements StatePrinter {
     @Override
     public void printGuessingResult(GuessResult guessResult) {
@@ -42,6 +41,8 @@ public class StateCliPrinter implements StatePrinter {
         print("Alphabet: " + (Arrays.toString(guessingWord.getAlphabet())));
     }
 
+
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     @Override
     public void print(String output) {
         System.out.println(output);

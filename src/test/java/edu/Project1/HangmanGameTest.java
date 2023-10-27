@@ -1,7 +1,6 @@
 package edu.Project1;
 
 import edu.Project1.dictionary.DefaultDictionary;
-import edu.Project1.input.Reader;
 import edu.Project1.output.StateCliPrinter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,13 +22,7 @@ class HangmanGameTest {
         input.clear();
         output.clear();
         hangmanGame = new HangmanGame(
-            new Reader() {
-                @Override
-                public String getLetter() {
-                    output.offer("Guess a letter:");
-                    return input.poll();
-                }
-            },
+            input::poll,
             new StateCliPrinter() {
                 @Override
                 public void print(String out) {

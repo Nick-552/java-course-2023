@@ -22,9 +22,14 @@ public class GuessingSession {
 
     public void run() {
         statePrinter.printAlphabet(guessingWord);
-        String guessingString = reader.getLetter();
+        String guessingString = getLetter();
         GuessResult guessResult = guessResult(guessingString);
         statePrinter.printGuessingResult(guessResult);
+    }
+
+    private String getLetter() {
+        statePrinter.print("Guess a letter:");
+        return reader.getLetter();
     }
 
     @NotNull GuessResult guessResult(String guessingString) {
