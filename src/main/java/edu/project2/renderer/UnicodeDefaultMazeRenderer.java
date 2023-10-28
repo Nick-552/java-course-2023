@@ -14,16 +14,18 @@ public class UnicodeDefaultMazeRenderer implements MazeRenderer {
 
     @Override
     public String render(Maze maze) {
-        return render(maze, List.of(new Coordinate(0, 0)));
+        return render(maze, null);
     }
 
     @Override
     public String render(Maze maze, List<Coordinate> path) {
-        StringBuilder mazeStringBuilder = new StringBuilder(maze.getHeight() * (maze.getWidth() + 1) + path.size());
+        StringBuilder mazeStringBuilder = new StringBuilder(
+            maze.getHeight() * (maze.getWidth() + 1) + (path != null ? path.size() : 0)
+        );
         for (int i = 0; i < maze.getHeight(); i++) {
             for (int j = 0; j < maze.getWidth(); j++) {
                 Coordinate currentCoordinate = new Coordinate(i, j);
-                if (path.contains(currentCoordinate)) {
+                if (path != null && path.contains(currentCoordinate)) {
                     if (currentCoordinate.equals(path.getFirst())) {
                         mazeStringBuilder.append(START_OF_PATH_SYMBOL);
                     } else if (currentCoordinate.equals(path.getLast())) {

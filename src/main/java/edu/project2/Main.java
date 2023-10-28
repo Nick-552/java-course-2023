@@ -5,17 +5,18 @@ import edu.project2.maze.Coordinate;
 import edu.project2.maze.Maze;
 import edu.project2.renderer.MazeRenderer;
 import edu.project2.renderer.UnicodeDefaultMazeRenderer;
-import edu.project2.solver.BfsSolver;
+import edu.project2.solver.DfsSolver;
 import edu.project2.solver.MazeSolver;
 
 public final class Main {
 
     private Main() {}
 
+    @SuppressWarnings({"checkstyle:RegexpSinglelineJava", "checkstyle:MagicNumber"})
     public static void main(String[] args) {
         Maze maze = new MazeRecursiveBacktrackerGenerator().generate(31, 61);
         MazeRenderer mazeRenderer = new UnicodeDefaultMazeRenderer();
-        MazeSolver mazeSolver = new BfsSolver();
+        MazeSolver mazeSolver = new DfsSolver();
 
         System.out.println(mazeRenderer.render(maze));
         System.out.println(
