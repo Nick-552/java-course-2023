@@ -20,10 +20,10 @@ public class UnicodeDefaultMazeRenderer implements MazeRenderer {
     @Override
     public String render(Maze maze, List<Coordinate> path) {
         StringBuilder mazeStringBuilder = new StringBuilder(
-            maze.getHeight() * (maze.getWidth() + 1) + (path != null ? path.size() : 0)
+            maze.height() * (maze.width() + 1) + (path != null ? path.size() : 0)
         );
-        for (int i = 0; i < maze.getHeight(); i++) {
-            for (int j = 0; j < maze.getWidth(); j++) {
+        for (int i = 0; i < maze.height(); i++) {
+            for (int j = 0; j < maze.width(); j++) {
                 Coordinate currentCoordinate = new Coordinate(i, j);
                 if (path != null && path.contains(currentCoordinate)) {
                     if (currentCoordinate.equals(path.getFirst())) {
@@ -35,7 +35,7 @@ public class UnicodeDefaultMazeRenderer implements MazeRenderer {
                     }
                 } else {
                     mazeStringBuilder.append(
-                        switch (maze.getGrid()[i][j].type()) {
+                        switch (maze.grid()[i][j].type()) {
                             case WALL -> WALL_SYMBOL;
                             case PASSAGE -> PASSAGE_SYMBOL;
                         }

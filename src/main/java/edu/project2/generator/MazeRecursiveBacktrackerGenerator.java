@@ -20,7 +20,7 @@ public class MazeRecursiveBacktrackerGenerator extends AbstractMazeGenerator {
         Stack<Cell> cellStack = new Stack<>();
         cellStack.push(currentCell);
         cellsVisited++;
-        int amountOfTrueCells = (this.height - 1) / 2 * (this.width - 1) / 2;
+        int amountOfTrueCells = numberOfTrueCells();
         while (cellsVisited < amountOfTrueCells) {
             List<Offset> unvisitedOffsets = getUnvisitedOffsets(currentCell);
             if (!unvisitedOffsets.isEmpty()) {
@@ -41,18 +41,6 @@ public class MazeRecursiveBacktrackerGenerator extends AbstractMazeGenerator {
             }
         }
         return new Maze(height, width, grid);
-    }
-
-    protected void fillAllWalls() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if ((i % 2 != 0 && j % 2 != 0) && (i < height - 1 && j < width - 1)) {
-                    grid[i][j] = new Cell(new Coordinate(i, j), Cell.Type.PASSAGE);
-                } else {
-                    grid[i][j] = new Cell(new Coordinate(i, j), Cell.Type.WALL);
-                }
-            }
-        }
     }
 
     protected List<Offset> getUnvisitedOffsets(Cell cell) {

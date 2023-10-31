@@ -14,8 +14,14 @@ public class DfsSolver implements MazeSolver {
 
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
+        if (ifWrongCoordinate(start) || ifWrongCoordinate(end)) {
+            throw new IllegalArgumentException("Coordinate should have only odd numbers greater than 0");
+        }
+        if (start.equals(end)) {
+            return List.of(start);
+        }
         stack.push(start);
-        visited = new boolean[maze.getHeight()][maze.getWidth()];
+        visited = new boolean[maze.height()][maze.width()];
         visited[start.row()][start.col()] = true;
         return dfsRecursion(maze, end);
     }
@@ -28,7 +34,7 @@ public class DfsSolver implements MazeSolver {
         for (Offset offset : Arrays.stream(Offset.values())
             .filter((offset) -> maze.hasOffset(currentCoordinate, offset)).toList()) {
             Coordinate newCoordinate = currentCoordinate.computeWallOffset(offset);
-            if (maze.getGrid()[newCoordinate.row()][newCoordinate.col()].type() == Cell.Type.PASSAGE
+            if (maze.grid()[newCoordinate.row()][newCoordinate.col()].type() == Cell.Type.PASSAGE
                 && !visited[newCoordinate.row()][newCoordinate.col()]) {
                 visited[newCoordinate.row()][newCoordinate.col()] = true;
                 stack.push(newCoordinate);

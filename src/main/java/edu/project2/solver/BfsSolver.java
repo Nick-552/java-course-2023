@@ -12,8 +12,11 @@ import java.util.Queue;
 public class BfsSolver implements MazeSolver {
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
+        if (ifWrongCoordinate(start) || ifWrongCoordinate(end)) {
+            throw new IllegalArgumentException("Coordinate should have only odd numbers greater than 0");
+        }
         Queue<List<Coordinate>> queue = new LinkedList<>();
-        final boolean[][] visited = new boolean[maze.getHeight()][maze.getWidth()];
+        final boolean[][] visited = new boolean[maze.height()][maze.width()];
         visited[start.row()][start.col()] = true;
         List<Coordinate> startPath = new LinkedList<>();
         startPath.add(start);
@@ -21,24 +24,23 @@ public class BfsSolver implements MazeSolver {
         while (!queue.isEmpty()) {
             List<Coordinate> currentPath = queue.poll();
             Coordinate lastCoordinate = currentPath.getLast();
+            if (lastCoordinate.equals(end)) {
+                return currentPath;
+            }
             for (Offset offset : Arrays.stream(Offset.values())
                 .filter((offset) -> maze.hasOffset(lastCoordinate, offset))
                 .toList()) {
                 Coordinate nextCoordinate = lastCoordinate.computeWallOffset(offset);
                 if (visited[nextCoordinate.row()][nextCoordinate.col()]
-                    || maze.getGrid()[nextCoordinate.row()][nextCoordinate.col()].type() != Cell.Type.PASSAGE) {
+                    || maze.grid()[nextCoordinate.row()][nextCoordinate.col()].type() != Cell.Type.PASSAGE) {
                     continue;
                 }
                 List<Coordinate> newPath = new LinkedList<>(List.copyOf(currentPath));
                 newPath.add(nextCoordinate);
-                if (nextCoordinate.equals(end)) {
-                    return newPath;
-                } else {
-                    queue.offer(newPath);
-                }
+                queue.offer(newPath);
                 visited[nextCoordinate.row()][nextCoordinate.col()] = true;
             }
         }
-        throw new RuntimeException("No path");
+        return null; // no path
     }
 }
