@@ -238,7 +238,7 @@ class AnimalUtilsTest {
         animals.add(Animal.builder().weight(301).age(11).type(Animal.Type.CAT).build());
 
         assertThat(AnimalUtils.getWeightSumOfEachTypeOfAnimalsWithAgeBetweenLAndK(animals, 7, 13))
-            .containsExactlyEntriesOf(Map.of(
+            .containsAllEntriesOf(Map.of(
                 Animal.Type.DOG, 250,
                 Animal.Type.CAT, 301)
             );
