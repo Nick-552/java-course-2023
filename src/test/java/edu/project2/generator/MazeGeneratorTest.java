@@ -1,5 +1,6 @@
 package edu.project2.generator;
 
+import edu.project2.maze.Maze;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,9 +15,12 @@ class MazeGeneratorTest {
         "4, 4",
         "-3, -3"
     })
-    void initMaze_shouldThrowIllegalArgumentException_whenWrongSize(int height, int width) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new MazeRecursiveBacktrackerGenerator().initMaze(height, width));
-        assertThatIllegalArgumentException().isThrownBy(() -> new MazeOldosBroderGenerator().initMaze(height, width));
-
+    void new_shouldThrowIllegalArgumentException_whenWrongSize(int height, int width) {
+        assertThatIllegalArgumentException().isThrownBy(() -> new AbstractMazeGenerator(height, width) {
+            @Override
+            public Maze generate() {
+                return null;
+            }
+        });
     }
 }

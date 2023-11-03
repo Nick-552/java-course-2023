@@ -2,7 +2,6 @@ package edu.project2.generator;
 
 import edu.project2.maze.Cell;
 import edu.project2.maze.Coordinate;
-import edu.project2.maze.Maze;
 import edu.project2.maze.Offset;
 
 public abstract class AbstractMazeGenerator implements MazeGenerator {
@@ -12,26 +11,28 @@ public abstract class AbstractMazeGenerator implements MazeGenerator {
     protected int width;
     protected boolean[][] visited;
 
+    public AbstractMazeGenerator(int height, int width) {
+        initMaze(height, width);
+    }
+
     protected void initMaze(int height, int width) {
         this.height = height;
         this.width = width;
         if (!hasCorrectSize()) {
             throw new IllegalArgumentException("Размеры лабиринта должны быть нечетными и не менее 3");
         }
-        grid = new Cell[height][width];
-        visited = new boolean[height][width];
+        setEmptyGrid();
     }
 
-    public abstract Maze generate(int height, int width);
 
-    public boolean hasOffset(Coordinate coordinate, Offset offset) {
+    protected boolean hasOffset(Coordinate coordinate, Offset offset) {
         return coordinate.row() + offset.getRow() > 0
             && coordinate.col() + offset.getColumn() > 0
             && coordinate.row() + offset.getRow() < height - 1
             && coordinate.col() + offset.getColumn() < width - 1;
     }
 
-    boolean hasCorrectSize() {
+    protected boolean hasCorrectSize() {
         return height > 2 && width > 2 && height % 2 == 1 && width % 2 == 1;
     }
 
@@ -49,5 +50,10 @@ public abstract class AbstractMazeGenerator implements MazeGenerator {
 
     protected int numberOfTrueCells() {
         return (this.height - 1) / 2 * (this.width - 1) / 2;
+    }
+
+    protected void setEmptyGrid() {
+        grid = new Cell[height][width];
+        visited = new boolean[height][width];
     }
 }

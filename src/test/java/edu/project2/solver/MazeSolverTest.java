@@ -83,7 +83,7 @@ class MazeSolverTest {
     @DisplayName("Wrong coordinate")
     @MethodSource("wrongCoordinateSource")
     void solve_shouldThrowIllegalArgumentException_whenWrongCoordinate(Coordinate start, Coordinate end) {
-        Maze maze = new MazeOldosBroderGenerator().generate(3, 3);
+        Maze maze = new MazeOldosBroderGenerator(3, 3).generate();
         assertThatIllegalArgumentException().isThrownBy(() -> new BfsSolver().solve(maze, start, end));
         assertThatIllegalArgumentException().isThrownBy(() -> new DfsSolver().solve(maze, start, end));
     }
@@ -106,8 +106,8 @@ class MazeSolverTest {
             int width = RANDOM.nextInt(1, 25) * 2 + 1;
             int endRow = RANDOM.nextInt(height - 2) / 2 * 2 + 1;
             int endCol = RANDOM.nextInt(width - 2) / 2 * 2 + 1;
-            Maze maze1 = new MazeRecursiveBacktrackerGenerator().generate(height, width);
-            Maze maze2 = new MazeOldosBroderGenerator().generate(height, width);
+            Maze maze1 = new MazeRecursiveBacktrackerGenerator(height, width).generate();
+            Maze maze2 = new MazeOldosBroderGenerator(height, width).generate();
 
             List<Coordinate> path1 = null;
             List<Coordinate> path2 = null;

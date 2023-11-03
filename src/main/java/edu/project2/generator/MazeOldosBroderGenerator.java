@@ -10,9 +10,13 @@ import java.util.Collections;
 
 public class MazeOldosBroderGenerator extends AbstractMazeGenerator {
 
+    public MazeOldosBroderGenerator(int height, int width) {
+        super(height, width);
+    }
+
     @Override
-    public Maze generate(int height, int width) {
-        initMaze(height, width);
+    public Maze generate() {
+        setEmptyGrid();
         fillAllWalls();
         int amountOfVisited = 1;
         int amountOfTrueCells = numberOfTrueCells();

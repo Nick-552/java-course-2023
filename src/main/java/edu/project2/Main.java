@@ -14,7 +14,7 @@ public final class Main {
 
     @SuppressWarnings({"checkstyle:RegexpSinglelineJava", "checkstyle:MagicNumber"})
     public static void main(String[] args) {
-        Maze maze = new MazeRecursiveBacktrackerGenerator().generate(31, 61);
+        Maze maze = new MazeRecursiveBacktrackerGenerator(31, 61).generate();
         MazeRenderer mazeRenderer = new UnicodeDefaultMazeRenderer();
         MazeSolver mazeSolver = new DfsSolver();
 

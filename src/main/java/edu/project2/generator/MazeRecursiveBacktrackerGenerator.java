@@ -10,9 +10,14 @@ import java.util.List;
 import java.util.Stack;
 
 public class MazeRecursiveBacktrackerGenerator extends AbstractMazeGenerator {
+
+    public MazeRecursiveBacktrackerGenerator(int height, int width) {
+        super(height, width);
+    }
+
     @Override
-    public Maze generate(int height, int width) {
-        initMaze(height, width);
+    public Maze generate() {
+        setEmptyGrid();
         fillAllWalls();
         int cellsVisited = 0;
         Cell currentCell = grid[1][1];
