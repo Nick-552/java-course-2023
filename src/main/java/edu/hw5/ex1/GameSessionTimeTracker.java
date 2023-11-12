@@ -7,7 +7,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
 
 public final class GameSessionTimeTracker {
 
@@ -20,7 +19,10 @@ public final class GameSessionTimeTracker {
 
     private GameSessionTimeTracker() {}
 
-    public static Duration getAverageGameSessionDuration(@NotNull List<String> sessions) {
+    public static Duration getAverageGameSessionDuration(List<String> sessions) {
+        if (sessions == null) {
+            throw new IllegalArgumentException("Should not be null");
+        }
         if (sessions.isEmpty()) {
             throw new IllegalArgumentException("You should provide at least 1 session");
         }

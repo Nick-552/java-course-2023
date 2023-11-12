@@ -5,14 +5,13 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
 
 public class DateParser5 extends DateParser {
 
     private static final Pattern DATE_PATTERN = Pattern.compile("(\\d+)\\s+day(s?)\\s+ago");
 
     @Override
-    protected Optional<LocalDate> selfParse(@NotNull String dateString) {
+    protected Optional<LocalDate> selfParse(String dateString) {
         Matcher matcher = DATE_PATTERN.matcher(dateString);
         if (!matcher.matches()) {
             return Optional.empty();

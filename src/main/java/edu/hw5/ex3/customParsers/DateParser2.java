@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.SignStyle;
 import java.time.temporal.ChronoField;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 public class DateParser2 extends DateParser {
 
@@ -20,7 +19,7 @@ public class DateParser2 extends DateParser {
         .toFormatter();
 
     @Override
-    protected Optional<LocalDate> selfParse(@NotNull String dateString) {
+    protected Optional<LocalDate> selfParse(String dateString) {
         try {
             return Optional.of(LocalDate.parse(dateString, DATE_TIME_FORMATTER));
         } catch (Exception e) {

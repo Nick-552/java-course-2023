@@ -2,7 +2,6 @@ package edu.hw5.ex3.model;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 public class DateParserChain {
     private final DateParser head;
@@ -16,7 +15,10 @@ public class DateParserChain {
         }
     }
 
-    public Optional<LocalDate> parseDate(@NotNull String dateString) {
+    public Optional<LocalDate> parseDate(String dateString) {
+        if (dateString == null) {
+            throw new IllegalArgumentException("Should not be null");
+        }
         return head.parse(dateString);
     }
 }

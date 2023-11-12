@@ -6,7 +6,6 @@ import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public final class Friday13thFinder {
 
@@ -25,7 +24,10 @@ public final class Friday13thFinder {
         return fridays13th;
     }
 
-    public static LocalDate nextFriday13(@NotNull LocalDate date) {
+    public static LocalDate nextFriday13(LocalDate date) {
+        if (date == null) {
+            throw new IllegalArgumentException("Should not be null");
+        }
         LocalDate currentDate = date;
         currentDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         while (currentDate.getDayOfMonth() != DEVIL_NUMBER) {

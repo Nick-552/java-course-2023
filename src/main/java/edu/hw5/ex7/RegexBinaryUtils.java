@@ -1,7 +1,6 @@
 package edu.hw5.ex7;
 
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
 import static edu.hw5.BinaryStringUtils.BinaryStringValidator.validate;
 
 public final class RegexBinaryUtils {
@@ -14,17 +13,17 @@ public final class RegexBinaryUtils {
 
     private RegexBinaryUtils() {}
 
-    public static boolean hasAtLeastThreeCharsAnd3rdIs0(@NotNull String string) {
+    public static boolean hasAtLeastThreeCharsAnd3rdIs0(String string) {
         validate(string);
         return PATTERN_1.matcher(string).matches();
     }
 
-    public static boolean hasSameStartAndEndChars(@NotNull String string) {
+    public static boolean hasSameStartAndEndChars(String string) {
         validate(string);
         return PATTERN_2.matcher(string).matches();
     }
 
-    public static boolean hasLengthInRangeOneToThree(@NotNull String string) {
+    public static boolean hasLengthInRangeOneToThree(String string) {
         validate(string);
         return PATTERN_3.matcher(string).matches();
     }

@@ -1,7 +1,6 @@
 package edu.hw5.ex5;
 
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
 
 public final class RussianCarNumberValidator {
 
@@ -10,7 +9,10 @@ public final class RussianCarNumberValidator {
 
     private RussianCarNumberValidator() {}
 
-    public static boolean isValid(@NotNull String russianCarNumber) {
+    public static boolean isValid(String russianCarNumber) {
+        if (russianCarNumber == null) {
+            throw new IllegalArgumentException("Should not be null");
+        }
         return RUSSIAN_CAR_NUMBER_PATTERN.matcher(russianCarNumber).matches();
     }
 }

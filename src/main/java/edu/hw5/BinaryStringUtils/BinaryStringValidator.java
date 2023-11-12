@@ -9,6 +9,9 @@ public final class BinaryStringValidator {
     private BinaryStringValidator() {}
 
     public static void validate(String string) {
+        if (string == null) {
+            throw new IllegalArgumentException("Should not be null");
+        }
         if (!isBinary(string)) {
             throw new IllegalArgumentException("String should be binary");
         }

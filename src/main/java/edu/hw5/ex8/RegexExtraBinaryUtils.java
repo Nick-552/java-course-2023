@@ -1,7 +1,6 @@
 package edu.hw5.ex8;
 
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
 import static edu.hw5.BinaryStringUtils.BinaryStringValidator.validate;
 
 public final class RegexExtraBinaryUtils {
@@ -23,37 +22,37 @@ public final class RegexExtraBinaryUtils {
 
     private static final Pattern PATTERN_7 = Pattern.compile("^0*(10+)*(1)?0*$");
 
-    public static boolean hasOddLength(@NotNull String binaryString) {
+    public static boolean hasOddLength(String binaryString) {
         validate(binaryString);
         return PATTERN_1.matcher(binaryString).matches();
     }
 
-    public static boolean startsWith0AndOddLengthOrStartsWith1AndEvenLength(@NotNull String binaryString) {
+    public static boolean startsWith0AndOddLengthOrStartsWith1AndEvenLength(String binaryString) {
         validate(binaryString);
         return PATTERN_2.matcher(binaryString).matches();
     }
 
-    public static boolean hasNumberOf0sThatIsMultipleOfThree(@NotNull String binaryString) {
+    public static boolean hasNumberOf0sThatIsMultipleOfThree(String binaryString) {
         validate(binaryString);
         return PATTERN_3.matcher(binaryString).matches();
     }
 
-    public static boolean isAnyStringExcept11And111(@NotNull String binaryString) {
+    public static boolean isAnyStringExcept11And111(String binaryString) {
         validate(binaryString);
         return PATTERN_4.matcher(binaryString).matches();
     }
 
-    public static boolean isEachOddChar1(@NotNull String binaryString) {
+    public static boolean isEachOddChar1(String binaryString) {
         validate(binaryString);
         return PATTERN_5.matcher(binaryString).matches();
     }
 
-    public static boolean containsAtLeastTwo0sAndNoMoreThanOne1(@NotNull String binaryString) {
+    public static boolean containsAtLeastTwo0sAndNoMoreThanOne1(String binaryString) {
         validate(binaryString);
         return PATTERN_6.matcher(binaryString).matches();
     }
 
-    public static boolean noConsecutive1s(@NotNull String binaryString) {
+    public static boolean noConsecutive1s(String binaryString) {
         validate(binaryString);
         return PATTERN_7.matcher(binaryString).matches();
     }

@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.SignStyle;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
 import static java.time.temporal.ChronoField.MONTH_OF_YEAR;
 import static java.time.temporal.ChronoField.YEAR;
@@ -22,7 +21,7 @@ public class DateParser1 extends DateParser {
         .toFormatter();
 
     @Override
-    protected Optional<LocalDate> selfParse(@NotNull String dateString) {
+    protected Optional<LocalDate> selfParse(String dateString) {
         try {
             return Optional.of(LocalDate.parse(dateString, DATE_TIME_FORMATTER));
         } catch (Exception e) {

@@ -4,11 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class DefaultDateParserTest {
 
@@ -62,5 +64,12 @@ class DefaultDateParserTest {
     @DisplayName("Parse test")
     void parse_shouldReturnLocalDateWhenRightFormatAndEmptyWhenWrong(String dateToParse, Optional<LocalDate> expected) {
         assertThat(DefaultDateParser.parse(dateToParse)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @DisplayName("Null test")
+    void parse_shouldThrowIllegalArgumentException_whenNull(String dateToParse) {
+        assertThatIllegalArgumentException().isThrownBy(() -> DefaultDateParser.parse(dateToParse));
     }
 }

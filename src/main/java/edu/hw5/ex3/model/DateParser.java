@@ -2,7 +2,6 @@ package edu.hw5.ex3.model;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 public abstract class DateParser {
 
@@ -14,7 +13,10 @@ public abstract class DateParser {
         this.next = next;
     }
 
-    public Optional<LocalDate> parse(@NotNull String dateString) {
+    public Optional<LocalDate> parse(String dateString) {
+        if (dateString == null) {
+            throw new IllegalArgumentException("Should not be null");
+        }
         Optional<LocalDate> date = selfParse(dateString);
         if (date.isPresent()) {
             return date;
@@ -24,5 +26,5 @@ public abstract class DateParser {
         return Optional.empty();
     }
 
-    protected abstract Optional<LocalDate> selfParse(@NotNull String dateString);
+    protected abstract Optional<LocalDate> selfParse(String dateString);
 }
