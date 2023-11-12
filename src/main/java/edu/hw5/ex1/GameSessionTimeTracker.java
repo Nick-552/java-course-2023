@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
 
 public final class GameSessionTimeTracker {
 
@@ -19,10 +20,8 @@ public final class GameSessionTimeTracker {
 
     private GameSessionTimeTracker() {}
 
-    public static Duration getAverageGameSessionDuration(List<String> sessions) {
-        if (sessions == null) {
-            throw new NullPointerException("Sessions should not be null");
-        } else if (sessions.isEmpty()) {
+    public static Duration getAverageGameSessionDuration(@NotNull List<String> sessions) {
+        if (sessions.isEmpty()) {
             throw new IllegalArgumentException("You should provide at least 1 session");
         }
         Duration durationSum = Duration.ZERO;
@@ -44,6 +43,6 @@ public final class GameSessionTimeTracker {
         if (!end.isAfter(start)) {
             throw new IllegalArgumentException("Start of session later than end");
         }
-        return Duration.between(end, start);
+        return Duration.between(start, end);
     }
 }

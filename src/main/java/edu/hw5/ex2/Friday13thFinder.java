@@ -2,9 +2,11 @@ package edu.hw5.ex2;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public final class Friday13thFinder {
 
@@ -12,12 +14,8 @@ public final class Friday13thFinder {
 
     private Friday13thFinder() {}
 
-    public static LocalDate nextFriday13() {
-        return nextFriday13(LocalDate.now());
-    }
-
     public static List<LocalDate> allFridays13inYear(int year) {
-        LocalDate currentDate = LocalDate.of(year, 1, 1);
+        LocalDate currentDate = LocalDate.of(year, Month.JANUARY, 1);
         currentDate = nextFriday13(currentDate);
         List<LocalDate> fridays13th = new ArrayList<>();
         while (currentDate.getYear() == year) {
@@ -27,12 +25,12 @@ public final class Friday13thFinder {
         return fridays13th;
     }
 
-    private static LocalDate nextFriday13(LocalDate date) {
+    public static LocalDate nextFriday13(@NotNull LocalDate date) {
         LocalDate currentDate = date;
         currentDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         while (currentDate.getDayOfMonth() != DEVIL_NUMBER) {
             currentDate = currentDate.with(
-                TemporalAdjusters.ofDateAdjuster(localDate -> localDate.plusMonths(1))
+                TemporalAdjusters.ofDateAdjuster(localDate -> localDate.plusWeeks(1))
             );
         }
         return currentDate;
