@@ -11,6 +11,4 @@ public class DefaultAnimalValidator extends AnimalValidator {
         addValidation(new AnimalWeightValidation());
         addValidation(new AnimalHeightValidation());
     }
-
-
 }

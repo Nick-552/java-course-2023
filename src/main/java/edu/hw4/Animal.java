@@ -12,13 +12,13 @@ public record Animal(
     int weight,
     boolean bites
 ) {
-    public static final int NUMBER_OF_DOG_CAT_PAWS = 4;
+    private static final int NUMBER_OF_DOG_CAT_PAWS = 4;
 
-    public static final int NUMBER_OF_BIRD_PAWS = 2;
+    private static final int NUMBER_OF_BIRD_PAWS = 2;
 
-    public static final int NUMBER_OF_FISH_PAWS = 0;
+    private static final int NUMBER_OF_FISH_PAWS = 0;
 
-    public static final int NUMBER_OF_SPIDER_PAWS = 8;
+    private static final int NUMBER_OF_SPIDER_PAWS = 8;
 
     public enum Type {
         CAT, DOG, BIRD, FISH, SPIDER
