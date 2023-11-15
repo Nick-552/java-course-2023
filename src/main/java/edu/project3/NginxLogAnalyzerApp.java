@@ -7,8 +7,6 @@ import edu.project3.model.ArgumentType;
 import edu.project3.model.NginxLog;
 import edu.project3.receiver.LocalLogsReceiver;
 import edu.project3.receiver.LogsReceiver;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +24,13 @@ public class NginxLogAnalyzerApp {
 
     public NginxLogAnalyzerApp(Map<ArgumentType, String> argsMap) {
         this.argsMap = argsMap;
-        OffsetDateTime from = IsoDateTimeParser.parse(argsMap.get(FROM));
-        OffsetDateTime to = IsoDateTimeParser.parse(argsMap.get(TO));
-        nginxLogsFilters.add(new LogsTimeFilter(from, to));
-        for (var arg : argsMap.entrySet()) {
+        for (var arg : this.argsMap.entrySet()) {
             System.out.println(arg);
         }
+        OffsetDateTime from = IsoDateTimeParser.parse(argsMap.get(FROM));
+        OffsetDateTime to = IsoDateTimeParser.parse(argsMap.get(TO));
+        System.out.println(from);
+        nginxLogsFilters.add(new LogsTimeFilter(from, to));
     }
 
     public void run() {
