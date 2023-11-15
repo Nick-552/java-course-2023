@@ -4,7 +4,7 @@ import edu.hw5.ex3.model.DateParser;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class DateParser4 extends DateParser {
+public class DateParserTodayYesterdayTomorrow extends DateParser {
 
     @Override
     protected Optional<LocalDate> selfParse(String dateString) {

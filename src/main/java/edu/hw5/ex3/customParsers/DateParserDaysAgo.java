@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DateParser5 extends DateParser {
+public class DateParserDaysAgo extends DateParser {
 
     private static final Pattern DATE_PATTERN = Pattern.compile("(\\d+)\\s+day(s?)\\s+ago");
 

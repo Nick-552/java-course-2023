@@ -5,8 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,11 +16,11 @@ class GameSessionTimeTrackerTest {
         return Stream.of(
             Arguments.of(
                 List.of("2022-03-12, 20:20 - 2022-03-12, 23:50", "2022-04-01, 21:30 - 2022-04-02, 01:20"),
-                Duration.ofMinutes(220)
+                "3ч 40м"
             ),
             Arguments.of(
                 List.of("2023-03-31, 17:45 - 2023-03-31, 23:45", "2023-04-01, 16:00 - 2023-04-01, 20:00"),
-                Duration.ofMinutes(300)
+                "5ч 0м"
             )
         );
     }
@@ -40,8 +38,8 @@ class GameSessionTimeTrackerTest {
     @ParameterizedTest
     @MethodSource("basicSource")
     @DisplayName("Basic test")
-    void getAverageGameSessionDuration_shouldReturnAverageDuration_whenValidInput(List<String> sessions, Duration expected) {
-        assertThat(GameSessionTimeTracker.getAverageGameSessionDuration(sessions)).isEqualTo(expected);
+    void getAverageGameSessionDuration_shouldReturnAverageDuration_whenValidInput(List<String> sessions, String expected) {
+        assertThat(GameSessionTimeTracker.getAverageGameSessionTime(sessions)).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -50,7 +48,7 @@ class GameSessionTimeTrackerTest {
     void getAverageGameSessionDuration_shouldThrowIllegalArgumentException_whenNullOrEmpty(List<String> sessions) {
         assertThatIllegalArgumentException()
             .isThrownBy(
-                () -> GameSessionTimeTracker.getAverageGameSessionDuration(sessions)
+                () -> GameSessionTimeTracker.getAverageGameSessionTime(sessions)
             );
     }
 
@@ -60,7 +58,7 @@ class GameSessionTimeTrackerTest {
     void getAverageGameSessionDuration_shouldThrowIllegalArgumentException_whenStartAfterEnd(List<String> sessions) {
         assertThatIllegalArgumentException()
             .isThrownBy(
-                () -> GameSessionTimeTracker.getAverageGameSessionDuration(sessions)
+                () -> GameSessionTimeTracker.getAverageGameSessionTime(sessions)
             );
     }
 }

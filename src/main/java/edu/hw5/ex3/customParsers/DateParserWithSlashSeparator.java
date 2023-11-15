@@ -8,7 +8,7 @@ import java.time.format.SignStyle;
 import java.time.temporal.ChronoField;
 import java.util.Optional;
 
-public class DateParser2 extends DateParser {
+public class DateParserWithSlashSeparator extends DateParser {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
         .appendValue(ChronoField.DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE)

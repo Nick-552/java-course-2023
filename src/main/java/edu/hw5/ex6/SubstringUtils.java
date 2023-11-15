@@ -1,10 +1,11 @@
 package edu.hw5.ex6;
 
 import java.util.regex.Pattern;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class SubstringUtils {
-
-    private SubstringUtils() {}
 
     static boolean isSubstringOf(String targetString, String sourceString) {
         if (sourceString == null || targetString == null) {

@@ -1,12 +1,12 @@
 package edu.hw5.ex8;
 
 import java.util.regex.Pattern;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import static edu.hw5.BinaryStringUtils.BinaryStringValidator.validate;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class RegexExtraBinaryUtils {
-
-    private RegexExtraBinaryUtils() {
-    }
 
     private static final Pattern PATTERN_1 = Pattern.compile("^.(.{2})*$");
 

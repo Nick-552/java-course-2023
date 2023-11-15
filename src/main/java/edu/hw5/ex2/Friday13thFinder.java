@@ -6,12 +6,13 @@ import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Friday13thFinder {
 
     private static final int DEVIL_NUMBER = 13;
-
-    private Friday13thFinder() {}
 
     public static List<LocalDate> allFridays13inYear(int year) {
         LocalDate currentDate = LocalDate.of(year, Month.JANUARY, 1);

@@ -7,7 +7,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class GameSessionTimeTracker {
 
     private static final Pattern SESSION_PATTERN = Pattern.compile(
@@ -17,9 +21,13 @@ public final class GameSessionTimeTracker {
     private static final DateTimeFormatter SESSION_DATE_TIME_FORMATTER = DateTimeFormatter
         .ofPattern("yyyy-MM-dd, HH:mm");
 
-    private GameSessionTimeTracker() {}
+    public static String getAverageGameSessionTime(List<String> sessions) {
+        return convertDurationToString(
+            getAverageGameSessionDuration(sessions)
+        );
+    }
 
-    public static Duration getAverageGameSessionDuration(List<String> sessions) {
+    private static Duration getAverageGameSessionDuration(List<String> sessions) {
         if (sessions == null) {
             throw new IllegalArgumentException("Should not be null");
         }
@@ -46,5 +54,11 @@ public final class GameSessionTimeTracker {
             throw new IllegalArgumentException("Start of session later than end");
         }
         return Duration.between(start, end);
+    }
+
+    private static String convertDurationToString(Duration duration) {
+        long minutes = duration.toMinutes();
+        final int minutesInHour = 60;
+        return "%dч %dм".formatted(minutes / minutesInHour, minutes % minutesInHour);
     }
 }

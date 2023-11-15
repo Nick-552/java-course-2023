@@ -1,12 +1,13 @@
 package edu.hw5.BinaryStringUtils;
 
 import java.util.regex.Pattern;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class BinaryStringValidator {
 
     private static final Pattern VALID_BINARY_STRING_PATTERN = Pattern.compile("^[01]*$");
-
-    private BinaryStringValidator() {}
 
     public static void validate(String string) {
         if (string == null) {
