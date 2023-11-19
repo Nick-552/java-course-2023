@@ -7,8 +7,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LogsTimeFilter extends Filter<NginxLog> {
 
-    private OffsetDateTime fromTime;
-    private OffsetDateTime toTime;
+    private final OffsetDateTime fromTime;
+
+    private final OffsetDateTime toTime;
 
     @Override
     protected boolean passFiltration(NginxLog log) {

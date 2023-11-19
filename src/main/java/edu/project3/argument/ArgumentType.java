@@ -1,5 +1,6 @@
-package edu.project3.model;
+package edu.project3.argument;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.cli.Option;
@@ -7,7 +8,7 @@ import org.apache.commons.cli.Options;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ArgumentType {
     PATH("p", "path", true, "path of NGINX log file(s) in the form of a local template or URL"),
     FROM("f", "from", false, "time parameter from in ISO8601"),

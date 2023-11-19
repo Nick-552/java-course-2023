@@ -1,7 +1,7 @@
 package edu.project3;
 
 
-import edu.project3.model.ArgumentType;
+import edu.project3.argument.ArgumentType;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.cli.CommandLine;
@@ -10,7 +10,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import static edu.project3.model.ArgumentType.getOptions;
+import static edu.project3.argument.ArgumentType.getOptions;
 
 public final class Main {
 

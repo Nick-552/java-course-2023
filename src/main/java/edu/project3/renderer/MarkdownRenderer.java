@@ -9,22 +9,22 @@ public class MarkdownRenderer implements ReportRenderer {
     public String render(Report report) {
         StringBuilder output = new StringBuilder();
         output.append("#### %s\n\n".formatted(report.header()));
-        output.append("| ");
+        output.append("|");
         long lines = 0;
         for (var stat : report.stats()) {
-            output.append("%10s |".formatted(stat.columnHead()));
+            output.append(String.format(" %" + stat.maxLength() + "s |", stat.columnHead()));
             lines = max(lines, stat.values().size());
         }
-        output.append("\n|:");
+        output.append("\n|");
         for (var stat : report.stats()) {
-            output.append("-".repeat(stat.maxLength())).append(":|");
+            output.append(":").append("-".repeat(stat.maxLength())).append(":|");
         }
         output.append("\n");
         for (int i = 0; i < lines; i++) {
             for (var stat : report.stats()) {
-                output.append("| ").append(report.stats().get(i));
+                output.append("| ").append(String.format("%" + stat.maxLength() + "s ", stat.values().get(i)));
             }
-            output.append(" |\n");
+            output.append("|\n");
         }
         return output.toString();
     }

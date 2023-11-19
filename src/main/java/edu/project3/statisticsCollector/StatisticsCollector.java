@@ -1,4 +1,4 @@
-package edu.project3.statisticscollector;
+package edu.project3.statisticsCollector;
 
 import edu.project3.model.NginxLog;
 import edu.project3.model.Report;

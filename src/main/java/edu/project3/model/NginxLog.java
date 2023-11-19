@@ -14,13 +14,14 @@ public record NginxLog(
     Integer status,
     Integer bodyBytesSent,
     String referer,
-    String httpUserAgent) {
+    String httpUserAgent,
+    String file) {
 
     @SuppressWarnings("checkstyle:MagicNumber")
     public static NginxLog parseStringToLog(String logString) {
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss +ZZZZ", Locale.ENGLISH);
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
         final Pattern logPattern =
-            Pattern.compile("^(.*) - (.*) \\[(.*)] \"(.*) (.*) (.*)\" (\\d+) (\\d+) \"(.*)\" \"(.*)\"$");
+            Pattern.compile("^(.*) - (.*) \\[(.*)] \"(.*) (.*) (.*)\" (\\d+) (\\d+) \"(.*)\" \"(.*)\" \"(.*)\"$");
         Matcher matcher = logPattern.matcher(logString);
         if (matcher.matches()) {
             return NginxLog.builder()
@@ -36,9 +37,10 @@ public record NginxLog(
                 .bodyBytesSent(Integer.parseInt(matcher.group(8)))
                 .referer(matcher.group(9))
                 .httpUserAgent(matcher.group(10))
+                .file(matcher.group(11))
                 .build();
         } else {
-            throw new IllegalArgumentException("line can not been parsed");
+            return null;
         }
     }
 }

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface LogsReceiver {
 
-    List<String> receiveLogs(String path);
+    List<String> receiveLogs();
 }
