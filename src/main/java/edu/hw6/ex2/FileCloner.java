@@ -3,11 +3,10 @@ package edu.hw6.ex2;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class FileCloner {
+@UtilityClass
+public class FileCloner {
 
     public static Path clone(Path path) {
         Path directory = path.getParent();

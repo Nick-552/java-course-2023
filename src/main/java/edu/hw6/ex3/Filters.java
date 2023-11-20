@@ -8,11 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Filters {
+@UtilityClass
+public class Filters {
 
     public static AbstractFilter largerThen(Long size) {
         return entry -> entry.toFile().length() > size;

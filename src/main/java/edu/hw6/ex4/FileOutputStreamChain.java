@@ -10,11 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.zip.Adler32;
 import java.util.zip.CheckedOutputStream;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class FileOutputStreamChain {
+@UtilityClass
+public class FileOutputStreamChain {
 
     public static void writeToFile(Path path, String message) {
         try (OutputStream outputStream = Files.newOutputStream(path)) {

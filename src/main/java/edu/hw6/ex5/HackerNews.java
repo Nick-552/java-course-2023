@@ -8,11 +8,10 @@ import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class HackerNews {
+@UtilityClass
+public class HackerNews {
 
     private static final String TOP_STORIES_URI_STRING = "https://hacker-news.firebaseio.com/v0/topstories.json";
 
