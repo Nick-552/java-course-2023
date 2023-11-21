@@ -20,7 +20,7 @@ public class HackerNews {
     private static final Pattern TITLE_PATTERN = Pattern.compile("\"title\":\"([^\"]*)\",");
 
     public static long[] hackerNewsTopStories() {
-        String responseBody = processGetStringRequest(TOP_STORIES_URI_STRING);
+        String responseBody = get(TOP_STORIES_URI_STRING);
         if (responseBody == null) {
             return new long[0];
         }
@@ -34,7 +34,7 @@ public class HackerNews {
 
     public static String news(long id) {
         String newsUri = String.format(NEWS_URI_STRING, id);
-        String responseBody = processGetStringRequest(newsUri);
+        String responseBody = get(newsUri);
         if (responseBody == null) {
             return null;
         }
@@ -43,7 +43,7 @@ public class HackerNews {
         return matcher.group(1);
     }
 
-    public static String processGetStringRequest(String uri) {
+    public static String get(String uri) {
         try (HttpClient httpClient = HttpClient.newHttpClient()) {
             HttpResponse<String> response;
             try {
