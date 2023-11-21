@@ -21,15 +21,16 @@ public class FileCloner {
         Path clonePath = directory.resolve(fileName + " — копия" + fileExtension);
 
         int copyIdx = 2;
-        while (clonePath.toFile().exists()) {
-            clonePath = directory.resolve(fileName + " — копия (%s)".formatted(copyIdx) + fileExtension);
-            copyIdx++;
-        }
-
-        try {
-            Files.copy(path, clonePath);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        synchronized (FileCloner.class) {
+            while (clonePath.toFile().exists()) {
+                clonePath = directory.resolve(fileName + " — копия (%s)".formatted(copyIdx) + fileExtension);
+                copyIdx++;
+            }
+            try {
+                Files.copy(path, clonePath);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         return clonePath;
     }

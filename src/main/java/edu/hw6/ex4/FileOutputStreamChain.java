@@ -16,20 +16,18 @@ import lombok.experimental.UtilityClass;
 public class FileOutputStreamChain {
 
     public static void writeToFile(Path path, String message) {
-        try (OutputStream outputStream = Files.newOutputStream(path)) {
+        try (
+            OutputStream outputStream = Files.newOutputStream(path);
             OutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new Adler32());
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                 bufferedOutputStream,
                 StandardCharsets.UTF_8
             );
-            PrintWriter printWriter = new PrintWriter(outputStreamWriter);
+            PrintWriter printWriter = new PrintWriter(outputStreamWriter)
+        ) {
             printWriter.print(message);
             printWriter.flush();
-            checkedOutputStream.close();
-            bufferedOutputStream.close();
-            outputStreamWriter.close();
-            printWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

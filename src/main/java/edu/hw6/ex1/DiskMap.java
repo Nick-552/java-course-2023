@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 
 public record DiskMap(Path path) implements Map<String, String> {
@@ -26,10 +27,8 @@ public record DiskMap(Path path) implements Map<String, String> {
     public DiskMap(Path path) {
         this.path = path;
         File directory = path.toFile();
-        if (!directory.exists()) {
-            if (!directory.mkdirs()) {
-                throw new RuntimeException("cannot create dir: %s".formatted(path));
-            }
+        if (!directory.exists() && !directory.mkdirs()) {
+            throw new RuntimeException("cannot create dir: %s".formatted(path));
         }
     }
 
@@ -56,33 +55,27 @@ public record DiskMap(Path path) implements Map<String, String> {
         return values().contains((String) value);
     }
 
+    @SneakyThrows
     @Override
     public String get(Object key) {
         check(key, KEY);
         Path keyPath = path.resolve((String) key);
         if (Files.exists(keyPath)) {
-            try {
-                return Files.readString(keyPath);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            return Files.readString(keyPath);
         } else {
             return null;
         }
     }
 
+    @SneakyThrows
     @Override
     public String put(String key, String value) {
         check(key, KEY);
         check(value, VALUE);
         Path keyPath = path.resolve(key);
-        try {
-            String oldValue = get(key);
-            Files.write(keyPath, value.getBytes());
-            return oldValue;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        String oldValue = get(key);
+        Files.write(keyPath, value.getBytes());
+        return oldValue;
     }
 
     @Override
@@ -169,7 +162,6 @@ public record DiskMap(Path path) implements Map<String, String> {
     @Getter
     static final class DiskMapEntry implements Entry<String, String> {
 
-
         private final String key;
 
         private String value;
@@ -185,10 +177,9 @@ public record DiskMap(Path path) implements Map<String, String> {
             if (o == this) {
                 return true;
             }
-
-            return o instanceof Map.Entry<?, ?> e
-                && Objects.equals(key, e.getKey())
-                && Objects.equals(value, e.getValue());
+            return o instanceof Map.Entry<?, ?> entry
+                && Objects.equals(key, entry.getKey())
+                && Objects.equals(value, entry.getValue());
         }
 
         @Override

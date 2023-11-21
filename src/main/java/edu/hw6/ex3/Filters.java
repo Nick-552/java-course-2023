@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +15,6 @@ public class Filters {
     public static AbstractFilter largerThen(Long size) {
         return entry -> entry.toFile().length() > size;
     }
-
 
     public static AbstractFilter writeable() {
         return entry -> entry.toFile().canWrite();
@@ -36,14 +34,10 @@ public class Filters {
     }
 
     public static AbstractFilter regexContains(String regex) {
-        return new AbstractFilter() {
-            private final Pattern pattern = Pattern.compile(regex);
-
-            @Override
-            public boolean accept(Path entry) {
-                Matcher matcher = pattern.matcher(entry.getFileName().toString());
-                return matcher.find();
-            }
+        return entry -> {
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(entry.getFileName().toString());
+            return matcher.find();
         };
     }
 
