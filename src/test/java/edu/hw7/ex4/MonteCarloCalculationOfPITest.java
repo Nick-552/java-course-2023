@@ -30,7 +30,7 @@ class MonteCarloCalculationOfPITest {
     @DisplayName("not parallel accuracy test")
     void calculatePiNotParallel(int iterations) {
         long startTime = System.nanoTime();
-        double pi = MonteCarloCalculationOfPI
+        double pi = MonteCarloCalculatorOfPI
             .calculatePiNotParallel(iterations);
         long endTime = System.nanoTime();
         assertThat(pi).isCloseTo(Math.PI, Offset.offset(EPSILON));
@@ -43,7 +43,7 @@ class MonteCarloCalculationOfPITest {
     @DisplayName("parallel accuracy test")
     void calculatePiParallel(int iterations) {
         long startTime = System.nanoTime();
-        double pi = MonteCarloCalculationOfPI
+        double pi = MonteCarloCalculatorOfPI
             .calculatePiParallel(iterations);
         long endTime = System.nanoTime();
         assertThat(pi).isCloseTo(Math.PI, Offset.offset(EPSILON));

@@ -11,9 +11,9 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class MonteCarloCalculationOfPI {
+public class MonteCarloCalculatorOfPI {
 
-    public static final int SUB_TASKS_AMOUNT = 70;
+    public static final int SUB_TASKS_AMOUNT = 30;
     private static final double PI_MULTIPLIER = 4;
 
     public static double calculatePiNotParallel(int iterations) {
