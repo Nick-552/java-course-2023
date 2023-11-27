@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
@@ -42,7 +41,6 @@ public class MonteCarloCalculatorOfPI {
                 futures[i] = executorService.submit(new PiWorker(iterationsPerThread));
             }
             executorService.shutdown();
-            executorService.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
             for (int i = 0; i < SUB_TASKS_AMOUNT; i++) {
                 totalInCircle += futures[i].get();
             }
