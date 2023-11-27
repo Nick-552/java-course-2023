@@ -1,10 +1,9 @@
 package edu.project3.receiver;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Receivers {
+@UtilityClass
+public class Receivers {
 
     public static LogsReceiver getLogReceiver(String path) {
         if (path.startsWith("http")) {

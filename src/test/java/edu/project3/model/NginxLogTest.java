@@ -35,6 +35,6 @@ class NginxLogTest {
     @MethodSource("logSource")
     @DisplayName("parseStringToLog")
     void parseStringToLog_shouldReturnLogIfLogStringIsCorrectElseNull(String logString, NginxLog expected) {
-        assertThat(NginxLog.parseStringToLog(logString)).isEqualTo(expected);
+        assertThat(NginxLog.fromString(logString)).isEqualTo(expected);
     }
 }

@@ -3,10 +3,10 @@ package edu.project3.format;
 import edu.project3.renderer.AdocRenderer;
 import edu.project3.renderer.MarkdownRenderer;
 import edu.project3.renderer.ReportRenderer;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public enum Format {
     MARKDOWN(new MarkdownRenderer(), ".md"),

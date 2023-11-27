@@ -58,7 +58,7 @@ public class NginxLogAnalyzerApp {
         List<String> logStrings = logsReceiver.receiveLogs(); // receiving logs
 
         // parse logs strings into logs
-        List<NginxLog> logs = logStrings.stream().map(NginxLog::parseStringToLog).filter(Objects::nonNull).toList();
+        List<NginxLog> logs = logStrings.stream().map(NginxLog::fromString).filter(Objects::nonNull).toList();
 
         // filter logs
         for (var filter : nginxLogsFilters) {

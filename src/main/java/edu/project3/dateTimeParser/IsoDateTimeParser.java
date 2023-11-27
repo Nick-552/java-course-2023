@@ -7,12 +7,10 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class IsoDateTimeParser {
+@UtilityClass
+public class IsoDateTimeParser {
 
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = List.of(
         DateTimeFormatter.ISO_LOCAL_DATE_TIME,
@@ -21,26 +19,22 @@ public final class IsoDateTimeParser {
     );
 
     public static OffsetDateTime parse(String timeString) {
-        OffsetDateTime dateTime;
         for (var formatter : DATE_TIME_FORMATTERS) {
             try {
                 if (formatter.equals(DateTimeFormatter.ISO_LOCAL_DATE_TIME)) {
-                    dateTime = OffsetDateTime.of(
+                    return OffsetDateTime.of(
                         LocalDateTime.parse(timeString, formatter),
                         ZoneOffset.UTC
                     );
                 } else if (formatter.equals(DateTimeFormatter.ISO_LOCAL_DATE)) {
-                    dateTime = OffsetDateTime.of(
+                    return OffsetDateTime.of(
                         LocalDate.parse(timeString, formatter),
                         LocalTime.MIDNIGHT, ZoneOffset.UTC
                     );
                 } else {
-                    dateTime = OffsetDateTime.parse(timeString, formatter);
+                    return OffsetDateTime.parse(timeString, formatter);
                 }
-            } catch (Exception e) {
-                continue;
-            }
-            return dateTime;
+            } catch (Exception ignored) { }
         }
         return null;
     }

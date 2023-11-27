@@ -8,12 +8,10 @@ import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class LocalLogsReceiver implements LogsReceiver {
 
-    private List<Path> paths;
+    private final List<Path> paths;
 
     public LocalLogsReceiver(String path) {
         paths = getAllPaths(path);

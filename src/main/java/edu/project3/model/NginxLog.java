@@ -18,7 +18,7 @@ public record NginxLog(
     String file) {
 
     @SuppressWarnings("checkstyle:MagicNumber")
-    public static NginxLog parseStringToLog(String logString) {
+    public static NginxLog fromString(String logString) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
         final Pattern logPattern =
             Pattern.compile("^(.*) - (.*) \\[(.*)] \"(.*) (.*) (.*)\" (\\d+) (\\d+) \"(.*)\" \"(.*)\" \"(.*)\"$");

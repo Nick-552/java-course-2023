@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 public class PartOfDayStatistics implements StatisticsCollector {
 
@@ -37,7 +37,7 @@ public class PartOfDayStatistics implements StatisticsCollector {
 
     }
 
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
     public enum PartOfDay {
         NIGHT(
             OffsetTime.of(0, 0, 0, 0, ZoneOffset.UTC),

@@ -16,20 +16,24 @@ public class ResponseCodes implements StatisticsCollector {
         var sortedResponseCodesStatistic = nginxLogs.stream()
             .collect(Collectors.groupingBy(NginxLog::status, Collectors.counting()))
             .entrySet().stream().sorted(Comparator.comparingLong(Map.Entry::getValue)).toList();
-        List<String> list0 = new ArrayList<>();
-        List<String> list1 = new ArrayList<>();
+        List<String> codesList = new ArrayList<>();
+        List<String> amountOfRequestsList = new ArrayList<>();
         final int head = 5;
         sortedResponseCodesStatistic.reversed().stream().limit(head).forEachOrdered(stringLongEntry -> {
-            list0.add(String.valueOf(stringLongEntry.getKey()));
-            list1.add(String.valueOf(stringLongEntry.getValue()));
+            codesList.add(String.valueOf(stringLongEntry.getKey()));
+            amountOfRequestsList.add(String.valueOf(stringLongEntry.getValue()));
         });
-        var list2 = list0.stream().map(e -> HttpStatus.valueOf(Integer.parseInt(e)).getReasonPhrase()).toList();
+        var reasonPhraseList = codesList.stream()
+            .map(e -> HttpStatus
+                .valueOf(Integer.parseInt(e))
+                .getReasonPhrase())
+            .toList();
         return new Report(
             "Коды ответов",
             List.of(
-                new ReportColumn("Код ответа", list0),
-                new ReportColumn("Сообщение", list2),
-                new ReportColumn("Количество", list1)
+                new ReportColumn("Код ответа", codesList),
+                new ReportColumn("Сообщение", reasonPhraseList),
+                new ReportColumn("Количество", amountOfRequestsList)
             )
         );
     }

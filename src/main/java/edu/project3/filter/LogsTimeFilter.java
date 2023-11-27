@@ -2,9 +2,9 @@ package edu.project3.filter;
 
 import edu.project3.model.NginxLog;
 import java.time.OffsetDateTime;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LogsTimeFilter extends Filter<NginxLog> {
 
     private final OffsetDateTime fromTime;

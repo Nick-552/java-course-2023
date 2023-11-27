@@ -18,18 +18,18 @@ public class IpAddresses implements StatisticsCollector {
             .toList()
         );
         list.sort(Map.Entry.comparingByValue());
-        List<String> list0 = new ArrayList<>();
-        List<String> list1 = new ArrayList<>();
+        List<String> ipsList = new ArrayList<>();
+        List<String> amountsOfRequests = new ArrayList<>();
         final int head = 5;
         list.reversed().stream().limit(head).forEachOrdered(stringLongEntry -> {
-            list0.add(stringLongEntry.getKey());
-            list1.add(String.valueOf(stringLongEntry.getValue()));
+            ipsList.add(stringLongEntry.getKey());
+            amountsOfRequests.add(String.valueOf(stringLongEntry.getValue()));
         });
         return new Report(
             "Наиболее частые IP адреса",
             List.of(
-                new ReportColumn("IP адрес", list0),
-                new ReportColumn("Количество", list1)
+                new ReportColumn("IP адрес", ipsList),
+                new ReportColumn("Количество", amountsOfRequests)
             )
         );
     }

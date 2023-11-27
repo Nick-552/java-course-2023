@@ -18,18 +18,18 @@ public class RequestedResources implements StatisticsCollector {
             .toList()
         );
         list.sort(Entry.comparingByValue());
-        List<String> list0 = new ArrayList<>();
-        List<String> list1 = new ArrayList<>();
+        List<String> resourceList = new ArrayList<>();
+        List<String> amountOfRequestsList = new ArrayList<>();
         final int head = 5;
         list.reversed().stream().limit(head).forEachOrdered(stringLongEntry -> {
-            list0.add(stringLongEntry.getKey());
-            list1.add(String.valueOf(stringLongEntry.getValue()));
+            resourceList.add(stringLongEntry.getKey());
+            amountOfRequestsList.add(String.valueOf(stringLongEntry.getValue()));
         });
         return new Report(
             "Запрашиваемые ресурсы",
             List.of(
-                new ReportColumn("Ресурс", list0),
-                new ReportColumn("Количество", list1)
+                new ReportColumn("Ресурс", resourceList),
+                new ReportColumn("Количество", amountOfRequestsList)
             )
         );
     }
