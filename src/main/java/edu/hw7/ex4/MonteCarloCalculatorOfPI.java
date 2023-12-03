@@ -17,12 +17,10 @@ public class MonteCarloCalculatorOfPI {
 
     public static double calculatePiNotParallel(int iterations) {
         int circleCount = 0;
-        double x;
-        double y;
         Random random = ThreadLocalRandom.current();
         for (int i = 0; i < iterations; i++) {
-            x = random.nextDouble();
-            y = random.nextDouble();
+            double x = random.nextDouble();
+            double y = random.nextDouble();
             if (isInsideCircle(x, y)) {
                 circleCount++;
             }

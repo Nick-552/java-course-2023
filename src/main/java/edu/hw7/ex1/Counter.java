@@ -5,11 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Counter {
     private final AtomicInteger counter = new AtomicInteger(0);
 
-    int getValue() {
+    public int getValue() {
         return counter.get();
     }
 
-    void increment() {
+    public void increment() {
         counter.incrementAndGet();
     }
 }
