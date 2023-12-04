@@ -2,7 +2,7 @@ package edu.hw7.ex3;
 
 import java.util.List;
 
-public class PersonDatabaseSynchronized extends AbstractPersonDatabase {
+public class PersonDatabaseSynchronized extends DefaultPersonDatabase {
 
     @Override
     public synchronized void add(Person person) {

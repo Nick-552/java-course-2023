@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class PersonDatabaseReadWriteLocking extends AbstractPersonDatabase {
+public class PersonDatabaseReadWriteLocking extends DefaultPersonDatabase {
 
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
 

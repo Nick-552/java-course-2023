@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractPersonDatabase implements PersonDatabase {
+public class DefaultPersonDatabase implements PersonDatabase {
 
     private final Map<Integer, Person> peopleById = new HashMap<>();
 
