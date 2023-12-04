@@ -1,39 +1,32 @@
 package edu.hw8.ex1.server;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import static edu.hw8.ex1.server.QuotesStorage.DEFAULT_MAP;
+import lombok.extern.log4j.Log4j2;
 
 @RequiredArgsConstructor
+@Log4j2
 public class RequestHandler implements Runnable {
-
-    private final static Logger LOGGER = LogManager.getLogger();
 
     private static final int BUFFER_SIZE = 1024;
 
-    private static final QuotesStorage QUOTES_STORAGE = QuotesStorage.getConcurrent().filledWithEntriesOf(DEFAULT_MAP);
+    private static final QuotesStorage QUOTES_STORAGE = QuotesStorage.getConcurrent().filledWithDefaultValues();
 
     private final SocketChannel socketChannel;
 
+    @SneakyThrows
     @Override
     public void run() {
-        LOGGER.info("started");
+        log.info("started");
         String request = readFromClient();
         String response = processRequest(request);
-        LOGGER.info("processed request. response: %s".formatted(response));
+        log.info("processed request. response: %s".formatted(response));
         sendResponseToClient(response);
-        try {
-            socketChannel.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        LOGGER.info("socketChannel closed");
+        socketChannel.close();
+        log.info("socketChannel closed");
     }
 
     @SneakyThrows

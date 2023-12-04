@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuotesStorage {
 
-    public static final Map<String, String> DEFAULT_MAP = Map.of(
+    private static final Map<String, String> DEFAULT_MAP = Map.of(
         "личности", "Не переходи на личности там, где их нет",
         "оскорбления", "Если твои противники перешли на личные оскорбления, будь уверена — твоя победа не за горами",
         "интеллект", "Чем ниже интеллект, тем громче оскорбления",
@@ -32,5 +32,9 @@ public class QuotesStorage {
     public QuotesStorage filledWithEntriesOf(Map<String, String> map) {
         keywordQuoteMap.putAll(map);
         return this;
+    }
+
+    public QuotesStorage filledWithDefaultValues() {
+        return filledWithEntriesOf(DEFAULT_MAP);
     }
 }

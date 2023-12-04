@@ -4,5 +4,7 @@ public interface ThreadPool extends AutoCloseable {
 
     void start();
 
+    void shutdown();
+
     void execute(Runnable runnable);
 }

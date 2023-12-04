@@ -7,12 +7,11 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import lombok.SneakyThrows;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class Server {
 
-    private final static Logger LOGGER = LogManager.getLogger();
 
     private static final int PORT = 8080;
 
@@ -30,7 +29,7 @@ public class Server {
         channel.configureBlocking(false);
         ServerSocket serverSocket = channel.socket();
         serverSocket.bind(new InetSocketAddress(HOST, PORT));
-        LOGGER.info("Starting server on port " + PORT);
+        log.info("Starting server on port " + PORT);
         while (channel.isOpen()) {
             SocketChannel client = channel.accept();
             if (client == null) {
@@ -38,11 +37,13 @@ public class Server {
             }
             executorService.execute(new RequestHandler(client));
         }
+        log.info("server shutdowned");
     }
 
     @SneakyThrows
     public void shutdownNow() {
         channel.close();
         executorService.shutdownNow();
+        executorService.close();
     }
 }

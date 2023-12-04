@@ -18,11 +18,14 @@ public class QuotesTest {
     @DisplayName("Тестирование Server и Client")
     public void serverAndClient_shouldWorkCorrectly() {
         Server server = new Server();
-        try (ExecutorService serverService = Executors.newSingleThreadExecutor()) {
+        try (
+            ExecutorService serverService = Executors.newSingleThreadExecutor();
+            ExecutorService clients = Executors.newFixedThreadPool(3)
+        ) {
             serverService.execute(server::start);
             var responses = new ConcurrentLinkedQueue<String>();
             Thread.sleep(1000);
-            ExecutorService clients = Executors.newFixedThreadPool(3);
+
             clients.execute(() -> {
                 Client client = new Client("localhost", 8080);
                 client.start();
@@ -48,7 +51,6 @@ public class QuotesTest {
                 "Чем ниже интеллект, тем громче оскорбления"
             );
             server.shutdownNow();
-            clients.shutdownNow();
         }
     }
 }
