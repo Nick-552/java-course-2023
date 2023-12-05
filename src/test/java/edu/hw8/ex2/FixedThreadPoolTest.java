@@ -11,7 +11,7 @@ class FixedThreadPoolTest {
     @SneakyThrows
     @Test
     void fixedThreadPoolTest() {
-        try (ThreadPool threadPool = FixedThreadPool.create(1)) {
+        try (ThreadPool threadPool = FixedThreadPool.create(5)) {
             List<Long> expected = List.of(0L, 1L, 3L, 8L, 21L, 55L, 144L, 377L, 987L, 2584L);
             final List<Long> actual = new CopyOnWriteArrayList<>();
             for(int i = 0; i < 10; i++) {
@@ -19,6 +19,7 @@ class FixedThreadPoolTest {
                 threadPool.execute(() -> actual.add(FibonacciUtils.compute(cur)));
             }
             threadPool.shutdown();
+            Thread.sleep(1000);
             assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
         }
     }
