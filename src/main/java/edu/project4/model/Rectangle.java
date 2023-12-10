@@ -1,7 +1,6 @@
 package edu.project4.model;
 
 import java.util.concurrent.ThreadLocalRandom;
-import static java.lang.Math.sqrt;
 
 public record Rectangle(double x, double y, double width, double height) {
 

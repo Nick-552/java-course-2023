@@ -4,8 +4,8 @@ import edu.project4.model.FractalImage;
 import edu.project4.model.Rectangle;
 import edu.project4.transformation.Transformation;
 import edu.project4.transformation.affine.AffineTransformation;
-import lombok.extern.log4j.Log4j2;
 import java.util.List;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class DefaultRenderer extends AbstractRenderer {

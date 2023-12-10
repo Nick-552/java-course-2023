@@ -14,6 +14,12 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ImageUtils {
 
+    private static final int OFFSET_RED = 16;
+
+    private static final int OFFSET_GREEN = 8;
+
+
+
     @SneakyThrows
     public static void saveFractalFlame(FractalImage fractalImage, Path path, ImageFormat format) {
         BufferedImage image = new BufferedImage(
@@ -34,7 +40,7 @@ public class ImageUtils {
         for (int y = 0; y < fractalImage.height(); y++) {
             for (int x = 0; x < fractalImage.width(); x++) {
                 var color = fractalImage.data()[y][x].color();
-                int rgb = (color.getR() << 16) | (color.getG() << 8) | (color.getB());
+                int rgb = (color.getR() << OFFSET_RED) | (color.getG() << OFFSET_GREEN) | (color.getB());
                 image.setRGB(x, y, rgb);
             }
         }
