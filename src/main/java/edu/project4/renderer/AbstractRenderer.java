@@ -33,14 +33,15 @@ public abstract class AbstractRenderer implements Renderer {
         Rectangle world,
         int samples,
         int iterPerSample,
-        int symmetry
+        int symmetry,
+        double gammaCorrection
     ) {
         FractalImage fractalImage = FractalImage.create(width, height);
         var affineTransformations = createAffineTransformations(samples);
         log.info("started");
         processSamples(fractalImage, world, affineTransformations, samples, iterPerSample, symmetry);
         log.info("rendered");
-        new ColorCorrection(2.2).process(fractalImage);
+        new ColorCorrection(gammaCorrection).process(fractalImage);
         log.info("gamma corrected");
         return fractalImage;
     }

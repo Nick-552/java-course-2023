@@ -58,7 +58,8 @@ public class FractalFlameGenerator {
             Rectangle.getDefaultRectangle(),
             numberOfSamples,
             100000,
-            symmetryNumber
+            symmetryNumber,
+            2.2
         );
     }
 }

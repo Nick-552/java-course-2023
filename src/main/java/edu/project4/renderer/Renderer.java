@@ -9,8 +9,7 @@ public interface Renderer {
         Rectangle world,
         int samples,
         int iterPerSample,
-        int symmetry
+        int symmetry,
+        double gammaCorrection
     );
-
-    default void finish(){}
 }
