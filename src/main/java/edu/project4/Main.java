@@ -17,7 +17,6 @@ public class Main {
                 ),
                 ImageFormat.PNG
             );
-            System.out.println(i);
         }
     }
 }

@@ -2,7 +2,6 @@ package edu.project4.transformation.nonLinear;
 
 import edu.project4.model.Point;
 import edu.project4.transformation.Transformation;
-
 import static java.lang.Math.cos;
 import static java.lang.Math.pow;
 import static java.lang.Math.sin;
