@@ -1,13 +1,14 @@
 package edu.project4.transformation;
 
 import edu.project4.model.Point;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
 import static java.lang.Math.atan;
 
 public interface Transformation extends Function<Point, Point> {
 
     default double omega() {
-        if (Math.random() < 1. / 2) {
+        if (ThreadLocalRandom.current().nextBoolean()) {
             return 0;
         } else {
             return Math.PI;
