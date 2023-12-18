@@ -2,11 +2,15 @@ package edu.project4.model;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 
 @Getter
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Color {
 
     private int r;
@@ -24,13 +28,6 @@ public class Color {
         this.g = g;
         this.b = b;
         this.hitCount = 1;
-    }
-
-    private Color() {
-        this.r = 0;
-        this.g = 0;
-        this.b = 0;
-        this.hitCount = 0;
     }
 
     public static Color createRandomColor() {

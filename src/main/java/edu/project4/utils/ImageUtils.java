@@ -21,7 +21,7 @@ public class ImageUtils {
 
 
     @SneakyThrows
-    public static void saveFractalFlame(FractalImage fractalImage, Path path, ImageFormat format) {
+    public static Path saveFractalFlame(FractalImage fractalImage, Path path, ImageFormat format) {
         BufferedImage image = new BufferedImage(
             fractalImage.width(),
             fractalImage.height(),
@@ -45,5 +45,6 @@ public class ImageUtils {
             }
         }
         ImageIO.write(image, format.name().toLowerCase(), imageFile);
+        return imageFile.toPath();
     }
 }

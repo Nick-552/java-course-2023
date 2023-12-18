@@ -89,7 +89,7 @@ public abstract class AbstractRenderer implements Renderer {
         }
     }
 
-    private List<AffineTransformation> createAffineTransformations(int n) {
+    protected static List<AffineTransformation> createAffineTransformations(int n) {
         var affineTransformations = new ArrayList<AffineTransformation>();
         for (int i = 0; i < n; i++) {
             affineTransformations.add(new AffineTransformation(

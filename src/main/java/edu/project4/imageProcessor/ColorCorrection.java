@@ -7,6 +7,8 @@ import static java.lang.Math.max;
 @AllArgsConstructor
 public class ColorCorrection implements ImageProcessor {
 
+    public static final double DEFAULT_GAMMA = 2.2;
+
     private double gamma;
 
     @Override
