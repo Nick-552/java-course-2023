@@ -55,6 +55,8 @@
         <commons-cli.version>1.6.0</commons-cli.version>
 
         <spring-web.version>6.1.0</spring-web.version>
+
+        <commons-io.version>2.15.1</commons-io.version>
         <commons-codec.version>1.13</commons-codec.version>
     </properties>
 
@@ -155,6 +157,13 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
+        </dependency>
+
+        <!-- Commons io-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
     </dependencies>
 
