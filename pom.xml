@@ -55,9 +55,14 @@
         <commons-cli.version>1.6.0</commons-cli.version>
 
         <spring-web.version>6.1.0</spring-web.version>
+
+        <commons-io.version>2.15.1</commons-io.version>
+
         <commons-codec.version>1.13</commons-codec.version>
 
         <asm.version>9.6</asm.version>
+
+        <commons-lang.version>3.14.0</commons-lang.version>
     </properties>
 
     <dependencyManagement>
@@ -168,6 +173,18 @@
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
             <version>${byte-buddy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+
+        <!-- Commons io-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
     </dependencies>
 
