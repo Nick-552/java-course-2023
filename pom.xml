@@ -59,6 +59,9 @@
         <commons-io.version>2.15.1</commons-io.version>
 
         <commons-codec.version>1.13</commons-codec.version>
+
+        <asm.version>9.6</asm.version>
+
         <commons-lang.version>3.14.0</commons-lang.version>
     </properties>
 
@@ -126,12 +129,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <version>${byte-buddy.version}</version>
-        </dependency>
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -161,6 +158,22 @@
             <version>${commons-codec.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${asm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <version>${byte-buddy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${byte-buddy.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -246,6 +259,11 @@
                             </goals>
                         </execution>
                     </executions>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/ArithmeticUtils</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
