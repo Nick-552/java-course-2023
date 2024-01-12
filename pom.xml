@@ -55,9 +55,15 @@
         <commons-cli.version>1.6.0</commons-cli.version>
 
         <spring-web.version>6.1.0</spring-web.version>
+
+        <commons-io.version>2.15.1</commons-io.version>
+
         <commons-codec.version>1.13</commons-codec.version>
 
         <jmh.version>1.37</jmh.version>
+        <asm.version>9.6</asm.version>
+
+        <commons-lang.version>3.14.0</commons-lang.version>
     </properties>
 
     <dependencyManagement>
@@ -124,12 +130,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <version>${byte-buddy.version}</version>
-        </dependency>
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -158,7 +158,7 @@
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
         </dependency>
-
+      
         <!-- JMH -->
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
@@ -170,6 +170,34 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>${jmh.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${asm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <version>${byte-buddy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${byte-buddy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+
+        <!-- Commons io-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
     </dependencies>
 
@@ -244,6 +272,11 @@
                             </goals>
                         </execution>
                     </executions>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/ArithmeticUtils</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
